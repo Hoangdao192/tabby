@@ -160,9 +160,9 @@ export class CodeLensMiddleware implements VscodeLspCodeLensMiddleware {
 
     let commandId: string;
     if (action === "accept") {
-      commandId = "tabby.chat.edit.accept";
+      commandId = "msb-codegen.chat.edit.accept";
     } else if (action === "discard") {
-      commandId = "tabby.chat.edit.discard";
+      commandId = "msb-codegen.chat.edit.discard";
     } else {
       return;
     }

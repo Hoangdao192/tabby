@@ -103,7 +103,7 @@ export class CodeLensProvider implements Feature {
             lineCodeLenses.push({
               range: codeLensRange,
               command: {
-                title: "$(sync~spin) Tabby is working...",
+                title: "$(sync~spin) MSB CodeGen is working...",
                 command: " ",
               },
               data: {

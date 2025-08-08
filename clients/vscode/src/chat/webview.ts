@@ -141,9 +141,9 @@ export class ChatWebview extends EventEmitter {
               if (!endpoint) {
                 this.checkStatusAndLoadContent();
               } else {
-                const command = `command:tabby.openExternal?${encodeURIComponent(`["${endpoint}/chat"]`)}`;
+                const command = `command:msb-codegen.openExternal?${encodeURIComponent(`["${endpoint}/chat"]`)}`;
                 this.loadErrorPage(
-                  `Failed to load the chat panel. <br/>Please check your network to ensure access to <a href='${command}'>${endpoint}/chat</a>. <br/><br/><a href='command:tabby.reconnectToServer'><b>Reload</b></a>`,
+                  `Failed to load the chat panel. <br/>Please check your network to ensure access to <a href='${command}'>${endpoint}/chat</a>. <br/><br/><a href='command:msb-codegen.reconnectToServer'><b>Reload</b></a>`,
                 );
               }
             }, 10000);
@@ -291,7 +291,7 @@ export class ChatWebview extends EventEmitter {
   private async createChatPanelApiClient(webview: Webview): Promise<ServerApiList> {
     return await createClient(webview, {
       refresh: async () => {
-        commands.executeCommand("tabby.reconnectToServer");
+        commands.executeCommand("msb-codegen.reconnectToServer");
         return;
       },
 
@@ -819,7 +819,7 @@ export class ChatWebview extends EventEmitter {
         return res;
       },
       runShell: async (command: string) => {
-        const terminal = window.createTerminal("Tabby");
+        const terminal = window.createTerminal("MSB CodeGen");
         terminal.show();
         terminal.sendText(command);
       },
@@ -853,7 +853,7 @@ export class ChatWebview extends EventEmitter {
   }
 
   private getUriAvatarTabby() {
-    return this.webview?.asWebviewUri(Uri.joinPath(this.context.extensionUri, "assets", "tabby.png")).toString() ?? "";
+    return this.webview?.asWebviewUri(Uri.joinPath(this.context.extensionUri, "assets", "MSB.jpg")).toString() ?? "";
   }
 
   private loadChatPanel() {
@@ -891,20 +891,20 @@ export class ChatWebview extends EventEmitter {
   // Returns undefined if no error, otherwise returns the error message
   private checkStatusInfo(statusInfo: StatusInfo | undefined): string | undefined {
     if (!statusInfo || statusInfo.status === "connecting") {
-      return 'Connecting to the Tabby server...<br/><span class="loader"></span>';
+      return 'Connecting to the MSB CodeGen server...<br/><span class="loader"></span>';
     }
 
     if (statusInfo.status === "unauthorized") {
-      return "Your token is invalid.<br/><a href='command:tabby.updateToken'><b>Update Token</b></a>";
+      return "Your token is invalid.<br/><a href='command:msb-codegen.updateToken'><b>Update Token</b></a>";
     }
 
     if (statusInfo.status === "disconnected") {
-      return "Failed to connect to the Tabby server.<br/><a href='command:tabby.connectToServer'><b>Connect To Server</b></a>";
+      return "Failed to connect to the MSB CodeGen server.<br/><a href='command:msb-codegen.connectToServer'><b>Connect To Server</b></a>";
     }
 
     const health = statusInfo.serverHealth;
     if (!health) {
-      return "Cannot get the health status of the Tabby server.";
+      return "Cannot get the health status of the MSB CodeGen server.";
     }
 
     if (!health["webserver"] || !health["chat_model"]) {
@@ -925,7 +925,7 @@ export class ChatWebview extends EventEmitter {
         version = semver.coerce(health["version"]["git_describe"]);
       }
       if (version && semver.lt(version, MIN_VERSION)) {
-        return `Tabby Chat requires Tabby server version ${MIN_VERSION} or later. Your server is running version ${version}.`;
+        return `MSB CodeGen Chat requires MSB CodeGen server version ${MIN_VERSION} or later. Your server is running version ${version}.`;
       }
     }
 

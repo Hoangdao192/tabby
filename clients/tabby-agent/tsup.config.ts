@@ -46,9 +46,6 @@ function processWinCa(copyRootsExe: boolean = false): Plugin {
 const banner = dedent`
   /**
    * Tabby Agent
-   * https://github.com/tabbyml/tabby/tree/main/clients/tabby-agent
-   * Copyright (c) 2023-2024 TabbyML, Inc.
-   * Licensed under the Apache License 2.0.
    */`;
 
 export default defineConfig(async () => {

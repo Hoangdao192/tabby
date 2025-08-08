@@ -21,7 +21,7 @@ export class ConnectToServerWidget {
   constructor(
     private client: Client,
     private config: Config,
-  ) {}
+  ) { }
 
   /**
    * Show the widget to connect to a Tabby Server:
@@ -32,7 +32,7 @@ export class ConnectToServerWidget {
   async show(): Promise<void> {
     return new Promise((resolve) => {
       const quickPick = this.quickPick;
-      quickPick.title = "Enter the URL of your Tabby Server";
+      quickPick.title = "Enter the URL of your MSB CodeGen Server";
       quickPick.items = this.buildQuickPickItems();
       quickPick.onDidChangeValue(() => {
         quickPick.items = this.buildQuickPickItems();
@@ -80,7 +80,7 @@ export class ConnectToServerWidget {
             await this.config.updateServerRecords(serverRecords);
             quickPick.items = this.buildQuickPickItems();
           } else if (button.iconPath.id == "settings-edit") {
-            commands.executeCommand("tabby.openTabbyAgentSettings");
+            commands.executeCommand("msb-codegen.openMSBCodeGenAgentSettings");
           }
         }
       });
@@ -99,7 +99,7 @@ export class ConnectToServerWidget {
 
     if (endpoint == "") {
       // Should not reach here
-      throw new Error("This method should not be called when using the config from Tabby Agent Settings.");
+      throw new Error("This method should not be called when using the config from MSB CodeGen Agent Settings.");
     }
 
     const token = await window.showInputBox({
@@ -122,7 +122,7 @@ export class ConnectToServerWidget {
     const statusInfo = await window.withProgress(
       {
         location: ProgressLocation.Notification,
-        title: "Connecting to Tabby Server...",
+        title: "Connecting to MSB CodeGen Server...",
         cancellable: true,
       },
       async () => {
@@ -132,7 +132,7 @@ export class ConnectToServerWidget {
 
     if (statusInfo.status == "disconnected") {
       const selected = await window.showErrorMessage(
-        "Failed to connect to Tabby Server.",
+        "Failed to connect to MSB CodeGen Server.",
         {
           modal: true,
           detail: statusInfo.helpMessage,
@@ -146,12 +146,12 @@ export class ConnectToServerWidget {
     } else if (statusInfo.status == "unauthorized") {
       if (endpoint == "") {
         const selected = await window.showErrorMessage(
-          "Your token is invalid. Please update your token in Tabby Agent Settings.",
+          "Your token is invalid. Please update your token in MSB CodeGen Agent Settings.",
           { modal: true },
-          "Tabby Agent Settings...",
+          "MSB CodeGen Agent Settings...",
         );
-        if (selected == "Tabby Agent Settings...") {
-          await commands.executeCommand("tabby.openTabbyAgentSettings");
+        if (selected == "MSB CodeGen Agent Settings...") {
+          await commands.executeCommand("msb-codegen.openMSBCodeGenAgentSettings");
         }
       } else {
         const selected = await window.showErrorMessage(
@@ -180,11 +180,11 @@ export class ConnectToServerWidget {
           buttons: isCurrent
             ? []
             : [
-                {
-                  iconPath: new ThemeIcon("settings-remove"),
-                  tooltip: "Remove from Recent Server List",
-                },
-              ],
+              {
+                iconPath: new ThemeIcon("settings-remove"),
+                tooltip: "Remove from Recent Server List",
+              },
+            ],
           endpoint,
           ...record,
         };
@@ -207,14 +207,14 @@ export class ConnectToServerWidget {
       });
 
       items.push({
-        label: "Use Configuration in Tabby Agent Settings",
+        label: "Use Configuration in MSB CodeGen Agent Settings",
         endpoint: "",
         description: this.config.serverEndpoint == "" ? "Current" : "",
         iconPath: new ThemeIcon("settings"),
         buttons: [
           {
             iconPath: new ThemeIcon("settings-edit"),
-            tooltip: "Edit Tabby Agent Settings",
+            tooltip: "Edit MSB CodeGen Agent Settings",
           },
         ],
         alwaysShow: true,

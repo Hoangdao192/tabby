@@ -272,37 +272,37 @@ export class StatusProvider extends EventEmitter implements Feature {
     let hasHelpMessage = false;
     switch (statusInfo.status) {
       case "connecting":
-        statusInfo.tooltip = "Tabby: Connecting to Server...";
+        statusInfo.tooltip = "MSB CodeGen: Connecting to Server...";
         break;
       case "unauthorized":
-        statusInfo.tooltip = "Tabby: Authorization Required";
+        statusInfo.tooltip = "MSB CodeGen: Authorization Required";
         break;
       case "disconnected":
-        statusInfo.tooltip = "Tabby: Connect to Server Failed";
+        statusInfo.tooltip = "MSB CodeGen: Connect to Server Failed";
         hasHelpMessage = true;
         break;
       case "ready":
-        statusInfo.tooltip = "Tabby: Code Completion Enabled";
+        statusInfo.tooltip = "MSB CodeGen: Code Completion Enabled";
         break;
       case "readyForAutoTrigger":
-        statusInfo.tooltip = "Tabby: Automatic Code Completion Enabled";
+        statusInfo.tooltip = "MSB CodeGen: Automatic Code Completion Enabled";
         break;
       case "readyForManualTrigger":
-        statusInfo.tooltip = "Tabby: Manual Code Completion Enabled";
+        statusInfo.tooltip = "MSB CodeGen: Manual Code Completion Enabled";
         break;
       case "fetching":
-        statusInfo.tooltip = "Tabby: Generating Completions...";
+        statusInfo.tooltip = "MSB CodeGen: Generating Completions...";
         break;
       case "codeCompletionNotAvailable":
-        statusInfo.tooltip = "Tabby: Code Completion Not Available";
+        statusInfo.tooltip = "MSB CodeGen: Code Completion Not Available";
         hasHelpMessage = true;
         break;
       case "rateLimitExceeded":
-        statusInfo.tooltip = "Tabby: Too Many Requests";
+        statusInfo.tooltip = "MSB CodeGen: Too Many Requests";
         hasHelpMessage = true;
         break;
       case "completionResponseSlow":
-        statusInfo.tooltip = "Tabby: Slow Completion Response Detected";
+        statusInfo.tooltip = "MSB CodeGen: Slow Completion Response Detected";
         hasHelpMessage = true;
         break;
       default:

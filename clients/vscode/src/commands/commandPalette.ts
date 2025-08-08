@@ -13,11 +13,11 @@ export class CommandPalette {
   constructor(
     private readonly client: Client,
     private readonly config: Config,
-  ) {}
+  ) { }
 
   show() {
     const quickPick: QuickPick<CommandPaletteItem> = window.createQuickPick();
-    quickPick.title = "Tabby Command Palette";
+    quickPick.title = "MSB CodeGen Command Palette";
     quickPick.items = this.buildMenuItems();
 
     this.client.status.on("didChange", () => {
@@ -61,7 +61,7 @@ export class CommandPalette {
     if (this.client.chat.isAvailable) {
       items.push({
         label: "Chat",
-        command: "tabby.chatView.focus",
+        command: "msb-codegen.chatView.focus",
         iconPath: new ThemeIcon("comment"),
       });
     }
@@ -81,7 +81,7 @@ export class CommandPalette {
       items.push({
         label: (isAutomatic ? "Disable" : "Enable") + " auto completions",
         picked: isAutomatic,
-        command: "tabby.toggleInlineCompletionTriggerMode",
+        command: "msb-codegen.toggleInlineCompletionTriggerMode",
         alwaysShow: true,
       });
 
@@ -91,7 +91,7 @@ export class CommandPalette {
           picked: !isLanguageDisabled,
           command: {
             title: "toggleLanguageInlineCompletion",
-            command: "tabby.toggleLanguageInlineCompletion",
+            command: "msb-codegen.toggleLanguageInlineCompletion",
             arguments: [currentLanguageId],
           },
           alwaysShow: true,
@@ -107,32 +107,32 @@ export class CommandPalette {
       },
       {
         label: "Connect to Server",
-        command: "tabby.connectToServer",
+        command: "msb-codegen.connectToServer",
         iconPath: new ThemeIcon("plug"),
       },
     );
     if (status === "unauthorized") {
       items.push({
         label: "Update Token",
-        command: "tabby.updateToken",
+        command: "msb-codegen.updateToken",
         iconPath: new ThemeIcon("key"),
       });
     }
     items.push({
       label: "Settings",
-      command: "tabby.openSettings",
+      command: "msb-codegen.openSettings",
       iconPath: new ThemeIcon("settings"),
     });
     if (!isBrowser) {
       items.push({
         label: "Agent Settings",
-        command: "tabby.openTabbyAgentSettings",
+        command: "msb-codegen.openMSBCodeGenAgentSettings",
         iconPath: new ThemeIcon("tools"),
       });
     }
     items.push({
       label: "Show Logs",
-      command: "tabby.outputPanel.focus",
+      command: "msb-codegen.outputPanel.focus",
       iconPath: new ThemeIcon("output"),
     });
 
@@ -141,12 +141,6 @@ export class CommandPalette {
       {
         label: "help & support",
         kind: QuickPickItemKind.Separator,
-      },
-      {
-        label: "Help",
-        description: "Open online documentation",
-        command: "tabby.openOnlineHelp",
-        iconPath: new ThemeIcon("question"),
       },
     );
 
@@ -174,15 +168,15 @@ export class CommandPalette {
           case "unauthorized": {
             return {
               label: `${STATUS_PREFIX}Unauthorized`,
-              description: "Update your token to connect to Tabby Server",
-              command: "tabby.updateToken",
+              description: "Update your token to connect to MSB CodeGen Server",
+              command: "msb-codegen.updateToken",
             };
           }
           case "disconnected": {
             return {
               label: `${STATUS_PREFIX}Disconnected`,
-              description: "Update the settings to connect to Tabby Server",
-              command: "tabby.connectToServer",
+              description: "Update the settings to connect to MSB CodeGen Server",
+              command: "msb-codegen.connectToServer",
             };
           }
           case "ready":
@@ -192,7 +186,7 @@ export class CommandPalette {
             return {
               label: `${STATUS_PREFIX}Ready`,
               description: this.client.agentConfig.current?.server.endpoint,
-              command: "tabby.outputPanel.focus",
+              command: "msb-codegen.outputPanel.focus",
             };
           }
           case "completionResponseSlow": {
@@ -213,11 +207,8 @@ export class CommandPalette {
                   )
                   .then((selection) => {
                     switch (selection) {
-                      case "Online Help...":
-                        commands.executeCommand("tabby.openOnlineHelp");
-                        break;
                       case "Don't Show Again":
-                        commands.executeCommand("tabby.status.addIgnoredIssues", "completionResponseSlow");
+                        commands.executeCommand("msb-codegen.status.addIgnoredIssues", "completionResponseSlow");
                         break;
                     }
                   });
@@ -228,14 +219,14 @@ export class CommandPalette {
             return {
               label: `${STATUS_PREFIX}Too Many Requests`,
               description: "Request limit exceeded",
-              command: "tabby.outputPanel.focus",
+              command: "msb-codegen.outputPanel.focus",
             };
           }
           default: {
             return {
               label: `${STATUS_PREFIX}Unknown Status`,
               description: "Please check the logs for more information.",
-              command: "tabby.outputPanel.focus",
+              command: "msb-codegen.outputPanel.focus",
             };
           }
         }

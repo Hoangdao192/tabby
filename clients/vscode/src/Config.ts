@@ -21,7 +21,7 @@ export class Config extends EventEmitter {
     context.subscriptions.push(
       workspace.onDidChangeConfiguration(async (event) => {
         if (
-          event.affectsConfiguration("tabby") ||
+          event.affectsConfiguration("msb-codegen") ||
           event.affectsConfiguration("editor.inlineSuggest") ||
           event.affectsConfiguration("http.proxy") ||
           event.affectsConfiguration("https.proxy") ||
@@ -35,7 +35,7 @@ export class Config extends EventEmitter {
   }
 
   private get workspace(): WorkspaceConfiguration {
-    return workspace.getConfiguration("tabby");
+    return workspace.getConfiguration("msb-codegen");
   }
 
   get memento(): Memento {
@@ -128,12 +128,8 @@ export class Config extends EventEmitter {
     }
   }
 
-  get keybindings(): "vscode-style" | "tabby-style" {
+  get keybindings(): "vscode-style" | "msb-codegen-style" {
     return this.workspace.get("keybindings", "vscode-style");
-  }
-
-  get anonymousUsageTrackingDisabled(): boolean {
-    return this.workspace.get("config.telemetry", false);
   }
 
   get chatEditRecentlyCommand(): string[] {
@@ -178,9 +174,9 @@ export class Config extends EventEmitter {
       inlineCompletion: {
         triggerMode: this.inlineCompletionTriggerMode == "automatic" ? "auto" : "manual",
       },
-      keybindings: this.keybindings == "tabby-style" ? "tabby-style" : "default",
+      keybindings: this.keybindings == "msb-codegen-style" ? "msb-codegen-style" : "default",
       anonymousUsageTracking: {
-        disable: this.anonymousUsageTrackingDisabled,
+        disable: true,
       },
     };
   }

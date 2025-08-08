@@ -41,7 +41,7 @@ pub struct LicenseInfo {
 
 impl LicenseInfo {
     pub fn seat_limits_for_community_license() -> usize {
-        5
+        5000
     }
 
     pub fn seat_limits_for_team_license() -> usize {

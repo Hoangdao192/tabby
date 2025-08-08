@@ -3,7 +3,7 @@ import { State as LanguageClientState } from "vscode-languageclient";
 import { Client } from "./lsp/client";
 import { Config } from "./Config";
 
-const label = "Tabby";
+const label = "MSB CodeGen";
 const iconAutomatic = "$(check)";
 const iconManual = "$(chevron-right)";
 const iconDisabled = "$(x)";
@@ -24,8 +24,8 @@ export class StatusBarItem {
     private readonly config: Config,
   ) {
     this.item.command = {
-      title: "Show Tabby Command Palette",
-      command: "tabby.commandPalette.trigger",
+      title: "Show MSB CodeGen Command Palette",
+      command: "msb-codegen.commandPalette.trigger",
     };
 
     this.update();
@@ -47,7 +47,7 @@ export class StatusBarItem {
       case LanguageClientState.Starting: {
         this.setColorNormal();
         this.setIcon(iconLoading);
-        this.setTooltip("Tabby: Initializing...");
+        this.setTooltip("MSB CodeGen: Initializing...");
         break;
       }
       case LanguageClientState.Running: {
@@ -121,7 +121,7 @@ export class StatusBarItem {
     }
     this.setColorNormal();
     this.setIcon(iconDisabled);
-    this.setTooltip(`Tabby: disabled for ${currentLanguageId} files`);
+    this.setTooltip(`MSB CodeGen: disabled for ${currentLanguageId} files`);
     return true;
   }
 
@@ -131,7 +131,7 @@ export class StatusBarItem {
     } else {
       this.setColorWarning();
       this.setIcon(iconDisabled);
-      this.setTooltip("Tabby: inline completion is disabled.");
+      this.setTooltip("MSB CodeGen: inline completion is disabled.");
       this.showInformationWhenInlineSuggestDisabled();
       return false;
     }
@@ -165,7 +165,7 @@ export class StatusBarItem {
     this.informationWhenInlineSuggestDisabledShown = true;
     window
       .showWarningMessage(
-        "Tabby's suggestion is not showing because inline suggestion is disabled. Please enable it first.",
+        "MSB CodeGen's suggestion is not showing because inline suggestion is disabled. Please enable it first.",
         "Enable",
         "Settings",
       )

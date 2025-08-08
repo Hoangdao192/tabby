@@ -13,7 +13,7 @@ import { getLogger } from "../logger";
 
 export class QuickFixCodeActionProvider implements CodeActionProviderInterface {
   private readonly logger = getLogger("QuickFixCodeActionProvider");
-  constructor(private readonly contextVariables: ContextVariables) {}
+  constructor(private readonly contextVariables: ContextVariables) { }
 
   provideCodeActions(
     _document: TextDocument,
@@ -58,21 +58,21 @@ export class QuickFixCodeActionProvider implements CodeActionProviderInterface {
     this.logger.trace("LSP Errors collections: ", lspErrors);
     this.logger.debug("QuickFix Range: ", mergedRange);
 
-    const quickFixEditing = new CodeAction("Fix using Tabby", CodeActionKind.QuickFix);
+    const quickFixEditing = new CodeAction("Fix using MSB CodeGen", CodeActionKind.QuickFix);
 
     quickFixEditing.command = {
-      command: "tabby.chat.edit.start",
-      title: "Fix using Tabby",
+      command: "msb-codegen.chat.edit.start",
+      title: "Fix using MSB CodeGen",
       arguments: [undefined, mergedRange, quickFixCmd],
     };
 
     const explainErrorCmd = `\nHere is some error information that occurred in the selection:
                         ${lspErrors}
                         Please provide an explanation for the error.`;
-    const explainError = new CodeAction("Explain using Tabby", CodeActionKind.QuickFix);
+    const explainError = new CodeAction("Explain using MSB CodeGen", CodeActionKind.QuickFix);
     explainError.command = {
-      command: "tabby.chat.explainCodeBlock",
-      title: "Explain using Tabby",
+      command: "msb-codegen.chat.explainCodeBlock",
+      title: "Explain using MSB CodeGen",
       arguments: [explainErrorCmd],
     };
 

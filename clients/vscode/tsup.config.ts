@@ -8,9 +8,7 @@ import dedent from "dedent";
 
 const banner = dedent`
   /**
-   * Tabby VSCode Extension
-   * https://github.com/tabbyml/tabby/tree/main/clients/vscode
-   * Copyright (c) 2023-2024 TabbyML, Inc.
+   * MSB CodeGen VSCode Extension
    * Licensed under the Apache License 2.0.
    */`;
 

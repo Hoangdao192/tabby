@@ -11,7 +11,7 @@ import {
 import { ContextVariables } from "../ContextVariables";
 
 export class InlineEditCodeActionProvider implements CodeActionProviderInterface {
-  constructor(private readonly contextVariables: ContextVariables) {}
+  constructor(private readonly contextVariables: ContextVariables) { }
 
   provideCodeActions(
     _document: TextDocument,
@@ -27,10 +27,10 @@ export class InlineEditCodeActionProvider implements CodeActionProviderInterface
       return;
     }
 
-    const inlineEditing = new CodeAction("Edit using Tabby", CodeActionKind.RefactorRewrite);
+    const inlineEditing = new CodeAction("Edit using MSB CodeGen", CodeActionKind.RefactorRewrite);
     inlineEditing.command = {
-      command: "tabby.chat.edit.start",
-      title: "Edit using Tabby",
+      command: "msb-codegen.chat.edit.start",
+      title: "Edit using MSB CodeGen",
     };
 
     return [inlineEditing];

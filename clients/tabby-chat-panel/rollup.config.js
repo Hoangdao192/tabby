@@ -10,7 +10,7 @@ export default defineConfig([{
     dir: 'dist',
     format: 'iife',
     entryFileNames: 'iife/tabby-chat-panel.min.js',
-    name: 'TabbyChatPanel',
+    name: 'MSBCodeGenChatPanel',
   },
   treeshake: true,
   plugins: [

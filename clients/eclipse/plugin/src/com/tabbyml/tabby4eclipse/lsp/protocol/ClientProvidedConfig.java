@@ -90,7 +90,7 @@ public class ClientProvidedConfig {
 
 	public static class Keybindings {
 		public static final String DEFAULT = "default";
-		public static final String TABBY_STYLE = "tabby-style";
+		public static final String TABBY_STYLE = "msb-codegen-style";
 		public static final String CUSTOMIZE = "customize";
 	}
 

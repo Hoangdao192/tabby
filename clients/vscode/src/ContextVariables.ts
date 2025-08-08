@@ -59,11 +59,11 @@ export class ContextVariables {
   }
 
   set status(value: string | undefined) {
-    commands.executeCommand("setContext", "tabby.status", value);
+    commands.executeCommand("setContext", "msb-codegen.status", value);
   }
 
   set chatSidePanelStatus(value: "loading" | "ready" | "error" | undefined) {
-    commands.executeCommand("setContext", "tabby.chatSidePanelStatus", value);
+    commands.executeCommand("setContext", "msb-codegen.chatSidePanelStatus", value);
   }
 
   // FIXME(@icycodes): context variables should not have getters
@@ -73,7 +73,7 @@ export class ContextVariables {
   }
 
   private set chatEnabled(value: boolean) {
-    commands.executeCommand("setContext", "tabby.chatEnabled", value);
+    commands.executeCommand("setContext", "msb-codegen.chatEnabled", value);
     this.chatEnabledValue = value;
   }
 
@@ -82,7 +82,7 @@ export class ContextVariables {
   }
 
   set chatEditInProgress(value: boolean) {
-    commands.executeCommand("setContext", "tabby.chatEditInProgress", value);
+    commands.executeCommand("setContext", "msb-codegen.chatEditInProgress", value);
     this.chatEditInProgressValue = value;
   }
 
@@ -91,7 +91,7 @@ export class ContextVariables {
   }
 
   set chatEditResolving(value: boolean) {
-    commands.executeCommand("setContext", "tabby.chatEditResolving", value);
+    commands.executeCommand("setContext", "msb-codegen.chatEditResolving", value);
     this.chatEditResolvingValue = value;
   }
 
@@ -100,7 +100,7 @@ export class ContextVariables {
   }
 
   set inlineCompletionTriggerMode(value: "automatic" | "manual") {
-    commands.executeCommand("setContext", "tabby.inlineCompletionTriggerMode", value);
+    commands.executeCommand("setContext", "msb-codegen.inlineCompletionTriggerMode", value);
     this.inlineCompletionTriggerModeValue = value;
   }
 
@@ -109,12 +109,12 @@ export class ContextVariables {
   }
 
   set chatSidePanelVisible(value: boolean) {
-    commands.executeCommand("setContext", "tabby.chatSidePanelVisible", value);
+    commands.executeCommand("setContext", "msb-codegen.chatSidePanelVisible", value);
     this.chatSidePanelVisibleValue = value;
   }
 
   set terminalContextEnabled(value: boolean) {
-    commands.executeCommand("setContext", "tabby.terminalContextEnabled", value);
+    commands.executeCommand("setContext", "msb-codegen.terminalContextEnabled", value);
     this.terminalContextEnabledValue = value;
   }
 

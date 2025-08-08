@@ -119,15 +119,15 @@ export class InlineCompletionProvider extends EventEmitter implements InlineComp
           typeof item.insertText === "string" ? item.insertText : new SnippetString(item.insertText.value),
           item.range
             ? new Range(
-                item.range.start.line,
-                item.range.start.character,
-                item.range.end.line,
-                item.range.end.character,
-              )
+              item.range.start.line,
+              item.range.start.character,
+              item.range.end.line,
+              item.range.end.character,
+            )
             : undefined,
           {
             title: "",
-            command: "tabby.applyCallback",
+            command: "msb-codegen.applyCallback",
             arguments: [
               () => {
                 this.handleEvent("accept", result, index);

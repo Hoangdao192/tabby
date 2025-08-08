@@ -11,7 +11,7 @@ export class LogFileStream implements pino.DestinationStream {
   write(data: string): void {
     if (!this.stream) {
       // Rotating file locate at `~/.tabby-client/agent/logs/`.
-      const logDir = path.join(os.homedir(), ".tabby-client", "agent", "logs");
+      const logDir = path.join(os.homedir(), ".msb-codegen-client", "agent", "logs");
       const now = new Date();
       const dateString = `${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}`;
       const timeString = `${now.getHours().toString().padStart(2, "0")}${now.getMinutes().toString().padStart(2, "0")}${now.getSeconds().toString().padStart(2, "0")}`;

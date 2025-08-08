@@ -1,6 +1,6 @@
 import { window, LogOutputChannel as VSCodeLogOutputChannel } from "vscode";
 
-const outputChannel = window.createOutputChannel("Tabby", { log: true });
+const outputChannel = window.createOutputChannel("MSB CodeGen", { log: true });
 
 export type LogLevel = "trace" | "debug" | "info" | "warn" | "error";
 
@@ -19,7 +19,7 @@ function tagMessage(message: string, tag: string): string {
   return `[${tag}] ${message}`;
 }
 
-export function getLogger(tag = "Tabby"): LogOutputChannel {
+export function getLogger(tag = "MSB CodeGen"): LogOutputChannel {
   const logEveryNCounts = new Map<string, number>();
   return new Proxy(outputChannel, {
     get(target, method) {

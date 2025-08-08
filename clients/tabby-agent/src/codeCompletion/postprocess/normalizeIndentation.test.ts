@@ -98,12 +98,12 @@ describe("postprocess", () => {
         }
       `;
       const completion = inline`
-        ├"command": "tabby.inlineCompletion.trigger.automatic",
+        ├"command": "msb-codegen.inlineCompletion.trigger.automatic",
          "title":  "Trigger Code Completion Automatically",
          "category": "Tabby"┤
       `;
       const expected = inline`
-        ├"command": "tabby.inlineCompletion.trigger.automatic",
+        ├"command": "msb-codegen.inlineCompletion.trigger.automatic",
         "title":  "Trigger Code Completion Automatically",
         "category": "Tabby"┤
       `;
@@ -113,7 +113,7 @@ describe("postprocess", () => {
     it("shouldn't change indent", async () => {
       const context = documentContext`
         {
-          "command": "tabby.toggleInlineCompletionTriggerMode",
+          "command": "msb-codegen.toggleInlineCompletionTriggerMode",
           "title": "Toggle Code Completion Trigger Mode (Automatic/Manual)",
           "category": "Tabby"
         },
@@ -121,14 +121,14 @@ describe("postprocess", () => {
       `;
       const completion = inline`
         ├{
-          "command": "tabby.inlineCompletion.trigger",
+          "command": "msb-codegen.inlineCompletion.trigger",
           "title": "Trigger Code Completion Manually",
           "category": "Tabby"
         },┤
       `;
       const expected = inline`
         ├{
-          "command": "tabby.inlineCompletion.trigger",
+          "command": "msb-codegen.inlineCompletion.trigger",
           "title": "Trigger Code Completion Manually",
           "category": "Tabby"
         },┤

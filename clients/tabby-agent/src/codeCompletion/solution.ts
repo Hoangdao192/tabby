@@ -50,12 +50,12 @@ export class CompletionResultItem {
       label: wordPrefix + firstLine,
       labelDetails: {
         detail: secondLine,
-        description: "Tabby",
+        description: "MSB CodeGen",
       },
       kind: CompletionItemKind.Text,
       documentation: {
         kind: "markdown",
-        value: `\`\`\`\n${linePrefix + insertText}\n\`\`\`\n ---\nSuggested by Tabby.`,
+        value: `\`\`\`\n${linePrefix + insertText}\n\`\`\`\n ---\nSuggested by MSB CodeGen.`,
       },
       textEdit: {
         newText: wordPrefix + insertText,

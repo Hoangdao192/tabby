@@ -12,7 +12,7 @@ import { getLogger } from "../logger";
 
 const configTomlTemplate = `## Tabby agent configuration file
 
-## Online documentation: https://tabby.tabbyml.com/docs/extensions/configurations
+## Online documentation: 
 ## You can uncomment and edit the values below to change the default settings.
 ## Configurations in this file have lower priority than the IDE settings.
 
@@ -36,14 +36,6 @@ const configTomlTemplate = `## Tabby agent configuration file
 ## You can set the log level here. The log file is located at ~/.tabby-client/agent/logs/.
 # [logs]
 # level = "silent" # "silent" or "error" or "debug"
-
-## Anonymous usage tracking
-## Tabby collects anonymous usage data and sends it to the Tabby team to help improve our products.
-## Your code, generated completions, or any sensitive information is never tracked or sent.
-## For more details on data collection, see https://tabby.tabbyml.com/docs/extensions/configurations#usage-collection
-## Your contribution is greatly appreciated. However, if you prefer not to participate, you can disable anonymous usage tracking here.
-# [anonymousUsageTracking]
-# disable = false # set to true to disable
 
 `;
 
@@ -159,6 +151,6 @@ export class ConfigFile extends EventEmitter {
 }
 
 export function getConfigFile(): ConfigFile | undefined {
-  const configFilePath = path.join(os.homedir(), ".tabby-client", "agent", "config.toml");
+  const configFilePath = path.join(os.homedir(), ".msb-codegen-client", "agent", "config.toml");
   return isBrowser ? undefined : new ConfigFile(configFilePath);
 }

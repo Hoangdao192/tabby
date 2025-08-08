@@ -206,7 +206,7 @@ export type ClientProvidedConfig = {
    * Keybindings should be implemented on the client side.
    * Sending this config to the server is for telemetry purposes.
    */
-  keybindings?: "default" | "tabby-style" | "customize";
+  keybindings?: "default" | "msb-codegen-style" | "customize";
   /**
    * Controls whether the telemetry is enabled or not.
    */

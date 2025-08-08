@@ -42,11 +42,11 @@ export class Commands {
     private readonly inlineCompletionProvider: InlineCompletionProvider,
     private readonly chatSidePanelProvider: ChatSidePanelProvider,
     private readonly gitProvider: GitProvider,
-  ) {}
+  ) { }
 
   register() {
     const registrations = Object.entries(this.commands).map(([key, handler]) => {
-      const commandName = `tabby.${key}`;
+      const commandName = `msb-codegen.${key}`;
       return commands.registerCommand(commandName, handler, this);
     });
     this.context.subscriptions.push(...registrations);
@@ -89,7 +89,7 @@ export class Commands {
         await this.config.updateServerRecords(serverRecords);
       } else {
         if (endpoint == "") {
-          await commands.executeCommand("tabby.openTabbyAgentSettings");
+          await commands.executeCommand("msb-codegen.openMSBCodeGenAgentSettings");
         } else {
           const widget = new ConnectToServerWidget(this.client, this.config);
           widget.showUpdateTokenWidget();
@@ -97,14 +97,14 @@ export class Commands {
       }
     },
     openSettings: () => {
-      commands.executeCommand("workbench.action.openSettings", "@ext:TabbyML.vscode-tabby");
+      commands.executeCommand("workbench.action.openSettings", "@ext:MSB.vscode-msb-codegen");
     },
-    openTabbyAgentSettings: () => {
+    openMSBCodeGenAgentSettings: () => {
       if (env.appHost !== "desktop") {
-        window.showWarningMessage("Tabby Agent config file is not supported in browser.", { modal: true });
+        window.showWarningMessage("MSB CodeGen Agent config file is not supported in browser.", { modal: true });
         return;
       }
-      const agentUserConfig = Uri.joinPath(Uri.file(os.homedir()), ".tabby-client", "agent", "config.toml");
+      const agentUserConfig = Uri.joinPath(Uri.file(os.homedir()), ".msb-codegen-client", "agent", "config.toml");
       workspace.fs.stat(agentUserConfig).then(
         () => {
           workspace.openTextDocument(agentUserConfig).then((document) => {
@@ -112,60 +112,18 @@ export class Commands {
           });
         },
         () => {
-          window.showWarningMessage("Failed to open Tabby Agent config file.", { modal: true });
+          window.showWarningMessage("Failed to open MSB CodeGen Agent config file.", { modal: true });
         },
       );
-    },
-    openOnlineHelp: (path?: string | undefined) => {
-      if (typeof path === "string" && path.length > 0) {
-        env.openExternal(Uri.parse(`https://tabby.tabbyml.com${path}`));
-        return;
-      }
-      window
-        .showQuickPick([
-          {
-            label: "Website",
-            iconPath: new ThemeIcon("book"),
-            alwaysShow: true,
-            description: "Visit Tabby's website to learn more about features and use cases",
-          },
-          {
-            label: "Tabby Slack Community",
-            description: "Join Tabby's Slack community to get help or share feedback",
-            iconPath: new ThemeIcon("comment-discussion"),
-            alwaysShow: true,
-          },
-          {
-            label: "Tabby GitHub Repository",
-            description: "Open issues for bugs or feature requests",
-            iconPath: new ThemeIcon("github"),
-            alwaysShow: true,
-          },
-        ])
-        .then((selection) => {
-          if (selection) {
-            switch (selection.label) {
-              case "Website":
-                env.openExternal(Uri.parse("https://www.tabbyml.com/"));
-                break;
-              case "Tabby Slack Community":
-                env.openExternal(Uri.parse("https://links.tabbyml.com/join-slack-extensions/"));
-                break;
-              case "Tabby GitHub Repository":
-                env.openExternal(Uri.parse("https://github.com/tabbyml/tabby"));
-                break;
-            }
-          }
-        });
     },
     openExternal: async (url: string) => {
       await env.openExternal(Uri.parse(url));
     },
     openKeybindings: () => {
-      commands.executeCommand("workbench.action.openGlobalKeybindings", "Tabby");
+      commands.executeCommand("workbench.action.openGlobalKeybindings", "MSB CodeGen");
     },
     gettingStarted: () => {
-      commands.executeCommand("workbench.action.openWalkthrough", "TabbyML.vscode-tabby#gettingStarted");
+      commands.executeCommand("workbench.action.openWalkthrough", "MSB.vscode-msb-codegen#gettingStarted");
     },
     "commandPalette.trigger": () => {
       const commandPalette = new CommandPalette(this.client, this.config);
@@ -230,20 +188,20 @@ export class Commands {
       if (await this.chatSidePanelProvider.chatWebview.isFocused()) {
         await commands.executeCommand("workbench.action.focusActiveEditorGroup");
       } else {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
       }
     },
     "chat.explainCodeBlock": async (/* userCommand?: string */) => {
       // @FIXME(@icycodes): The `userCommand` is not being used
       // When invoked from code-action/quick-fix, it contains the error message provided by the IDE
       ensureHasEditorSelection(async () => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         this.chatSidePanelProvider.chatWebview.executeCommand("explain");
       });
     },
     "chat.addRelevantContext": async () => {
       ensureHasEditorSelection(async (editor) => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         const fileContext = await getEditorContext(editor, this.gitProvider, "selection");
         if (fileContext) {
           this.chatSidePanelProvider.chatWebview.addRelevantContext(fileContext);
@@ -253,7 +211,7 @@ export class Commands {
     "chat.addFileContext": async () => {
       const editor = window.activeTextEditor;
       if (editor) {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         const fileContext = await getEditorContext(editor, this.gitProvider, "file");
         if (fileContext) {
           this.chatSidePanelProvider.chatWebview.addRelevantContext(fileContext);
@@ -264,25 +222,25 @@ export class Commands {
     },
     "chat.fixCodeBlock": async () => {
       ensureHasEditorSelection(async () => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         this.chatSidePanelProvider.chatWebview.executeCommand("fix");
       });
     },
     "chat.generateCodeBlockDoc": async () => {
       ensureHasEditorSelection(async () => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         this.chatSidePanelProvider.chatWebview.executeCommand("generate-docs");
       });
     },
     "chat.generateCodeBlockTest": async () => {
       ensureHasEditorSelection(async () => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         this.chatSidePanelProvider.chatWebview.executeCommand("generate-tests");
       });
     },
     "chat.codeReviewCodeBlock": async () => {
       ensureHasEditorSelection(async () => {
-        await commands.executeCommand("tabby.chatView.focus");
+        await commands.executeCommand("msb-codegen.chatView.focus");
         this.chatSidePanelProvider.chatWebview.executeCommand("code-review");
       });
     },
@@ -434,7 +392,7 @@ export class Commands {
               const currentBranch = selectedRepo.state.HEAD.name;
               // FIXME(Sma1lboy): let LLM model decide should we create a new branch or not
               if (currentBranch === "main" || currentBranch === "master") {
-                commands.executeCommand("tabby.chat.generateBranchName", selectedRepo);
+                commands.executeCommand("msb-codegen.chat.generateBranchName", selectedRepo);
               }
             }
           }
@@ -499,7 +457,7 @@ export class Commands {
       }
     },
     "terminal.explainSelection": async () => {
-      await commands.executeCommand("tabby.chatView.focus");
+      await commands.executeCommand("msb-codegen.chatView.focus");
       this.chatSidePanelProvider.chatWebview.executeCommand("explain-terminal");
     },
     "terminal.addSelectionToChat": async () => {
@@ -509,7 +467,7 @@ export class Commands {
         return;
       }
 
-      await commands.executeCommand("tabby.chatView.focus");
+      await commands.executeCommand("msb-codegen.chatView.focus");
       this.chatSidePanelProvider.chatWebview.addRelevantContext(terminalContext);
     },
   };

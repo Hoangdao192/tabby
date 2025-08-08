@@ -45,6 +45,6 @@ export class FileDataStore extends EventEmitter {
 }
 
 export function getFileDataStore(): FileDataStore | undefined {
-  const dataFilePath = path.join(os.homedir(), ".tabby-client", "agent", "data.json");
+  const dataFilePath = path.join(os.homedir(), ".msb-codegen-client", "agent", "data.json");
   return isBrowser ? undefined : new FileDataStore(dataFilePath);
 }

@@ -39,7 +39,7 @@ export function createClient(context: ExtensionContext, logger: LogOutputChannel
   if (isBrowser) {
     const workerModulePath = Uri.joinPath(context.extensionUri, "dist/tabby-agent/browser/index.mjs");
     const worker = new Worker(workerModulePath.toString());
-    const languageClient = new BrowserLanguageClient("Tabby", "Tabby", clientOptions, worker);
+    const languageClient = new BrowserLanguageClient("MSBCodeGen", "MSB CodeGen", clientOptions, worker);
     return new Client(context, languageClient);
   } else {
     const serverModulePath = context.asAbsolutePath("dist/tabby-agent/node/index.js");
@@ -53,7 +53,7 @@ export function createClient(context: ExtensionContext, logger: LogOutputChannel
         transport: TransportKind.ipc,
       },
     };
-    const languageClient = new NodeLanguageClient("Tabby", serverOptions, clientOptions);
+    const languageClient = new NodeLanguageClient("MSB CodeGen", serverOptions, clientOptions);
     return new Client(context, languageClient);
   }
 }

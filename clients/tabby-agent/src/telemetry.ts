@@ -35,11 +35,11 @@ export class AnonymousUsageLogger {
   constructor(
     private readonly dataStore: DataStore,
     private readonly configurations: Configurations,
-  ) {}
+  ) { }
 
   async initialize(clientInfo: ClientInfo | undefined) {
     const config = this.configurations.getMergedConfig();
-    const endpoint = "https://app.tabbyml.com/api";
+    const endpoint = "";
     const proxyConfigs: ProxyConfig[] = [{ fromEnv: true }];
     if (!isBlank(config.proxy.url)) {
       proxyConfigs.unshift(config.proxy);

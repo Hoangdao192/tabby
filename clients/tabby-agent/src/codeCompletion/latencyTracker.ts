@@ -124,9 +124,9 @@ export function buildHelpMessageForLatencyIssue(
   let helpMessageForRunningLargeModelOnCPU = "";
   if (serverHealth?.device === "cpu" && serverHealth?.model?.match(/[0-9.]+B$/)) {
     helpMessageForRunningLargeModelOnCPU +=
-      `Your Tabby server is running model <i>${serverHealth?.model}</i> on CPU. ` +
+      `Your MSB CodeGen server is running model <i>${serverHealth?.model}</i> on CPU. ` +
       "This model may be performing poorly due to its large parameter size, please consider trying smaller models or switch to GPU. " +
-      "You can find a list of recommend models in the <a href='https://tabby.tabbyml.com/docs/'>online documentation</a>.<br/>";
+      "You can find a list of recommend models in the online documentation.<br/>";
   }
   let commonHelpMessage = "";
   if (helpMessageForRunningLargeModelOnCPU.length == 0) {
@@ -134,13 +134,13 @@ export function buildHelpMessageForLatencyIssue(
       serverHealth?.model ?? ""
     }</i> may be performing poorly due to its large parameter size. `;
     commonHelpMessage +=
-      "Please consider trying smaller models. You can find a list of recommend models in the <a href='https://tabby.tabbyml.com/docs/'>online documentation</a>.</li>";
+      "Please consider trying smaller models. You can find a list of recommend models in the online documentation.</li>";
   }
   if (endpoint) {
     const host = new URL(endpoint).host;
     if (!(host.startsWith("localhost") || host.startsWith("127.0.0.1") || host.startsWith("0.0.0.0"))) {
       commonHelpMessage += "<li>A poor network connection. Please check your network and proxy settings.</li>";
-      commonHelpMessage += "<li>Server overload. Please contact your Tabby server administrator for assistance.</li>";
+      commonHelpMessage += "<li>Server overload. Please contact your MSB CodeGen server administrator for assistance.</li>";
     }
   }
   let helpMessage = "";

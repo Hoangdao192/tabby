@@ -16,7 +16,7 @@ const logger = getLogger();
 let clientRef: Client | undefined = undefined;
 
 export async function activate(context: ExtensionContext) {
-  logger.info("Activating Tabby extension...");
+  logger.info("Activating MSB CodeGen extension...");
 
   const client = createClient(context, logger);
   const config = new Config(context);
@@ -32,7 +32,7 @@ export async function activate(context: ExtensionContext) {
   // Register chat panel
   const chatViewProvider = new ChatSidePanelProvider(context, client, contextVariables, gitProvider);
   context.subscriptions.push(
-    window.registerWebviewViewProvider("tabby.chatView", chatViewProvider, {
+    window.registerWebviewViewProvider("msb-codegen.chatView", chatViewProvider, {
       webviewOptions: { retainContextWhenHidden: true },
     }),
   );
@@ -61,7 +61,7 @@ export async function activate(context: ExtensionContext) {
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */ // @ts-ignore noUnusedLocals
   const codeActions = new CodeActions(client, contextVariables);
 
-  logger.info("Tabby extension activated.");
+  logger.info("MSB CodeGen extension activated.");
 
   // Start async initialization
   const startClient = async () => {
@@ -87,10 +87,10 @@ export async function activate(context: ExtensionContext) {
     }
 
     const response = await window.showInformationMessage(
-      "Do you consent to sharing your Tabby token with another VSCode extension?",
+      "Do you consent to sharing your MSB CodeGen token with another VSCode extension?",
       {
         modal: true,
-        detail: `The extension requests your token to access the Tabby server at ${endpoint}. Sharing your token allows the extension to perform actions as if it were you. Only proceed if you trust the extension.`,
+        detail: `The extension requests your token to access the MSB CodeGen server at ${endpoint}. Sharing your token allows the extension to perform actions as if it were you. Only proceed if you trust the extension.`,
       },
       "Yes",
       "No",
@@ -107,7 +107,7 @@ export async function activate(context: ExtensionContext) {
 }
 
 export async function deactivate() {
-  logger.info("Deactivating Tabby extension...");
+  logger.info("Deactivating MSB CodeGen extension...");
   await clientRef?.stop();
-  logger.info("Tabby extension deactivated.");
+  logger.info("MSB CodeGen extension deactivated.");
 }

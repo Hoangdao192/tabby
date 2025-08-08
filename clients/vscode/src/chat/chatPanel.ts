@@ -4,7 +4,7 @@ import type { Client } from "../lsp/client";
 import type { GitProvider } from "../git/GitProvider";
 
 export async function createChatPanel(context: ExtensionContext, client: Client, gitProvider: GitProvider) {
-  const panel = window.createWebviewPanel(`tabby.chat.panel`, "Tabby", ViewColumn.One, {
+  const panel = window.createWebviewPanel(`msb-codegen.chat.panel`, "MSB CodeGen", ViewColumn.One, {
     retainContextWhenHidden: true,
   });
 

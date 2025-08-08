@@ -102,7 +102,7 @@ data class ClientProvidedConfig(
   sealed class Keybindings {
     companion object {
       const val DEFAULT = "default"
-      const val TABBY_STYLE = "tabby-style"
+      const val TABBY_STYLE = "msb-codegen-style"
       const val CUSTOMIZE = "customize"
     }
   }

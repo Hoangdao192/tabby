@@ -83,7 +83,7 @@ const PLANS: Plan[] = [
   {
     name: 'Community',
     pricing: '$0 per user/month',
-    limit: 'Up to 5 users'
+    limit: 'Up to 5000 users'
   },
   {
     name: 'Team',
@@ -144,7 +144,7 @@ const FEATURES: FeatureGroup[] = [
     features: [
       {
         name: 'User count',
-        community: 'Up to 5',
+        community: 'Up to 5000',
         team: 'Up to 50',
         enterprise: 'Unlimited'
       },
