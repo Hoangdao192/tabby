@@ -33,7 +33,7 @@ export class SmartApplyFeature implements Feature {
     private readonly chat: ChatFeature,
     private readonly configurations: Configurations,
     private readonly documents: TextDocuments<TextDocument>,
-  ) {}
+  ) { }
 
   initialize(connection: Connection): ServerCapabilities | Promise<ServerCapabilities> {
     this.lspConnection = connection;
@@ -294,7 +294,7 @@ async function provideSmartApplyEditLLM(
     if (!readableStream) {
       return false;
     }
-    const editId = "tabby-" + cryptoRandomString({ length: 6, type: "alphanumeric" });
+    const editId = "msbcodegen-" + cryptoRandomString({ length: 6, type: "alphanumeric" });
     const currentEdit: Edit = {
       id: editId,
       location: location,

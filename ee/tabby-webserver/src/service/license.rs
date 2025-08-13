@@ -10,6 +10,7 @@ use tabby_schema::{
     license::{LicenseFeature, LicenseInfo, LicenseService, LicenseStatus, LicenseType},
     Result,
 };
+use tokio::io::Interest;
 
 use crate::bail;
 
@@ -78,13 +79,13 @@ impl LicenseServiceImpl {
         };
 
         Ok(LicenseInfo {
-            r#type: LicenseType::Community,
+            r#type: LicenseType::Enterprise,
             status,
             seats: LicenseInfo::seat_limits_for_community_license() as i32,
             seats_used: seats_used as i32,
             issued_at: None,
             expires_at: None,
-            features: None,
+            features: Some(vec![LicenseFeature::CustomLogo]),
         }
         .guard_seat_limit())
     }
@@ -111,7 +112,7 @@ fn license_info_from_raw(raw: LicenseJWTPayload, seats_used: usize) -> Result<Li
     let issued_at = jwt_timestamp_to_utc(raw.iat)?;
     let expires_at = jwt_timestamp_to_utc(raw.exp)?;
 
-    let status = if expires_at < Utc::now() {
+    let status = if expires_at < DateTime::from_timestamp_nanos(0) {
         LicenseStatus::Expired
     } else if seats_used > raw.num {
         LicenseStatus::SeatsExceeded

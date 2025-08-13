@@ -192,7 +192,7 @@ export function CommonProviderForm<T extends boolean>({
                 <FormItem>
                   <FormLabel required>Instance URL</FormLabel>
                   <FormDescription>
-                    The VCS instance URL. Make sure this instance and Tabby are
+                    The VCS instance URL. Make sure this instance and MSB CodeGen are
                     network reachable from each other.
                   </FormDescription>
                   <FormControl>

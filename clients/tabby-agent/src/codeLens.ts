@@ -30,7 +30,7 @@ const changesPreviewLineType = {
 const logger = getLogger("CodeLensProvider");
 
 export class CodeLensProvider implements Feature {
-  constructor(private readonly documents: TextDocuments<TextDocument>) {}
+  constructor(private readonly documents: TextDocuments<TextDocument>) { }
 
   initialize(connection: Connection, clientCapabilities: ClientCapabilities): ServerCapabilities {
     if (clientCapabilities.textDocument?.codeLens) {
@@ -79,7 +79,7 @@ export class CodeLensProvider implements Feature {
       const codeLensLocation: Location = { uri: uri, range: codeLensRange };
       const lineCodeLenses: CodeLens[] = [];
       if (lineInPreviewBlock < 0) {
-        const match = /^>>>>>>> (tabby-[0-9|a-z|A-Z]{6}) (\[.*\])/g.exec(text);
+        const match = /^>>>>>>> (msbcodegen-[0-9|a-z|A-Z]{6}) (\[.*\])/g.exec(text);
         const editId = match?.[1];
         const markers = match?.[2];
         if (match && markers && editId) {
@@ -94,7 +94,7 @@ export class CodeLensProvider implements Feature {
           });
         }
       } else {
-        const match = /^<<<<<<< (tabby-[0-9|a-z|A-Z]{6})/g.exec(text);
+        const match = /^<<<<<<< (msbcodegen-[0-9|a-z|A-Z]{6})/g.exec(text);
         const editId = match?.[1];
         if (match && editId) {
           lineInPreviewBlock = -1;

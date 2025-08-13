@@ -103,7 +103,7 @@ abstract class InlineChatCodeVisionProvider : CodeVisionProvider<Any>, DumbAware
 
 class InlineChatLoadingCodeVisionProvider : InlineChatCodeVisionProvider() {
     override val id: String = "Tabby.InlineChat.Loading"
-    override val name ="Tabby Inline Edit Loading"
+    override val name ="MSB CodeGen Inline Edit Loading"
     override val command: String = " "
     override val action: String? = null
     override val actionId: String? = null
@@ -114,7 +114,7 @@ class InlineChatLoadingCodeVisionProvider : InlineChatCodeVisionProvider() {
 
 class InlineChatCancelCodeVisionProvider : InlineChatCodeVisionProvider() {
     override val id: String = "Tabby.InlineChat.Cancel"
-    override val name ="Tabby Inline Edit Cancel"
+    override val name ="MSB CodeGen Inline Edit Cancel"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String = "cancel"
     override val actionId: String = "Tabby.InlineChat.Resolve.Cancel"
@@ -125,7 +125,7 @@ class InlineChatCancelCodeVisionProvider : InlineChatCodeVisionProvider() {
 
 class InlineChatAcceptCodeVisionProvider : InlineChatCodeVisionProvider() {
     override val id: String = "Tabby.InlineChat.Accept"
-    override val name ="Tabby Inline Edit Accept"
+    override val name ="MSB CodeGen Inline Edit Accept"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String? = "accept"
     override val actionId: String = "Tabby.InlineChat.Resolve.Accept"
@@ -136,7 +136,7 @@ class InlineChatAcceptCodeVisionProvider : InlineChatCodeVisionProvider() {
 
 class InlineChatDiscardCodeVisionProvider : InlineChatCodeVisionProvider() {
     override val id: String = "Tabby.InlineChat.Discard"
-    override val name ="Tabby Inline Edit Discard"
+    override val name ="MSB CodeGen Inline Edit Discard"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String = "discard"
     override val actionId: String = "Tabby.InlineChat.Resolve.Discard"
@@ -149,7 +149,7 @@ class InlineChatCodeVisionSettingProvider: CodeVisionGroupSettingProvider {
     override val groupId: String
         get() = "Tabby.InlineEdit"
     override val groupName: String
-        get() = "Tabby Inline Edit"
+        get() = "MSB CodeGen Inline Edit"
     override val description: String
-        get() = "Tabby Inline Edit"
+        get() = "MSB CodeGen Inline Edit"
 }

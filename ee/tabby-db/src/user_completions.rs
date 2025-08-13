@@ -8,6 +8,7 @@ use sqlx::{prelude::FromRow, query};
 use crate::{AsSqliteDateTimeString, DbConn};
 
 #[derive(FromRow)]
+#[allow(unused)]
 pub struct UserCompletionDAO {
     pub user_id: i64,
     pub completion_id: String,

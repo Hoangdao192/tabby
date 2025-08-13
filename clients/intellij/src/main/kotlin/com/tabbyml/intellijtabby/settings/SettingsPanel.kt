@@ -62,7 +62,7 @@ class SettingsPanel(private val project: Project) {
                 invokeLater(ModalityState.stateForComponent(parentComponent)) {
                   Messages.showErrorDialog(
                     parentComponent,
-                    "Tabby server requires authentication, please set your personal token.",
+                    "MSB CodeGen server requires authentication, please set your personal token.",
                     "Check Connection Failed"
                   )
                 }
@@ -71,7 +71,7 @@ class SettingsPanel(private val project: Project) {
               StatusInfo.Status.DISCONNECTED -> {
                 invokeLater(ModalityState.stateForComponent(parentComponent)) {
                   val errorMessage = statusInfo.helpMessage ?: "Unknown error."
-                  val messages = "<html>Failed to connect to the Tabby server:<br/>${errorMessage}</html>"
+                  val messages = "<html>Failed to connect to the MSB CodeGen server:<br/>${errorMessage}</html>"
                   Messages.showErrorDialog(parentComponent, messages, "Check Connection Failed")
                 }
               }
@@ -79,7 +79,7 @@ class SettingsPanel(private val project: Project) {
               else -> {
                 invokeLater(ModalityState.stateForComponent(parentComponent)) {
                   Messages.showInfoMessage(
-                    parentComponent, "Successfully connected to the Tabby server.", "Check Connection Completed"
+                    parentComponent, "Successfully connected to the MSB CodeGen server.", "Check Connection Completed"
                   )
                 }
               }
@@ -105,15 +105,15 @@ class SettingsPanel(private val project: Project) {
       .addCopyableTooltip(
         """
       <html>
-      A http or https URL of Tabby server endpoint.<br/>
-      If left empty, the server endpoint config in <i>~/.tabby-client/agent/config.toml</i> will be used.<br/>
+      A http or https URL of MSB CodeGen server endpoint.<br/>
+      If left empty, the server endpoint config in <i>~/.msb-codegen-client/agent/config.toml</i> will be used.<br/>
       Default to <i>http://localhost:8080</i>.
       </html>
       """.trimIndent()
       ).addSeparator().addLabeledComponent("Token", serverTokenPasswordField, 0, false).addCopyableTooltip(
         """
       <html>
-      Set token here if your Tabby server requires authentication.
+      Set token here if your MSB CodeGen server requires authentication.
       </html>
       """.trimIndent()
       ).addSeparator().addComponent(serverEndpointCheckConnectionButton).panel
@@ -122,8 +122,8 @@ class SettingsPanel(private val project: Project) {
   private val nodeBinaryPanel = FormBuilder.createFormBuilder().addComponent(nodeBinaryTextField).addCopyableTooltip(
     """
       <html>
-      Path to the Node binary for running the Tabby agent. The Node version must be >= 18.0.<br/>
-      If left empty, Tabby will attempt to find the Node binary in the <i>PATH</i> environment variable.<br/>
+      Path to the Node binary for running the MSB CodeGen agent. The Node version must be >= 18.0.<br/>
+      If left empty, MSB CodeGen will attempt to find the Node binary in the <i>PATH</i> environment variable.<br/>
       </html>
       """.trimIndent()
   ).panel
@@ -141,14 +141,14 @@ class SettingsPanel(private val project: Project) {
       .addCopyableTooltip("Trigger on-demand by pressing a shortcut").panel
 
   private val keymapStyleDefaultRadioButton = JBRadioButton("Default")
-  private val keymapStyleTabbyStyleRadioButton = JBRadioButton("Tabby style")
+  private val keymapStyleTabbyStyleRadioButton = JBRadioButton("MSB CodeGen style")
   private val keymapStyleCustomRadioButton = JBRadioButton("<html><a href=''>Customize...</a><html>").apply {
     addActionListener {
       ShowSettingsUtil.getInstance().showSettingsDialog(project, KeymapPanel::class.java) { panel ->
         CoroutineScope(Dispatchers.IO).launch {
           Thread.sleep(500) // FIXME: It seems that we need to wait for the KeymapPanel to be ready?
           invokeLater(ModalityState.stateForComponent(panel)) {
-            panel.showOption("Tabby")
+            panel.showOption("MSB CodeGen")
           }
         }
       }
@@ -171,9 +171,7 @@ class SettingsPanel(private val project: Project) {
     FormBuilder.createFormBuilder().addComponent(isAnonymousUsageTrackingDisabledCheckBox).addCopyableTooltip(
       """
       <html>
-      Tabby collects aggregated anonymous usage data and sends it to the Tabby team to help improve our products.<br/>
-      Your code, generated completions, or any identifying information is never tracked or transmitted.<br/>
-      For more details on data collection, please check our <a href="https://tabby.tabbyml.com/docs/extensions/configurations#usage-collection">online documentation</a>.<br/>
+      Please disable anonymous usage tracking
       </html>
       """
     ).panel

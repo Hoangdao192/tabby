@@ -13,10 +13,10 @@ import Main from './components/main'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Tabby',
-    template: `Tabby - %s`
+    default: 'MSB CodeGen',
+    template: `MSB CodeGen - %s`
   },
-  description: 'Tabby, an opensource, self-hosted AI coding assistant.',
+  description: 'MSB CodeGen, an AI coding assistant.',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' }

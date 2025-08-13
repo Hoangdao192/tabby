@@ -74,7 +74,7 @@ impl LicenseInfo {
     pub fn ensure_admin_seats(&self, num_admins: usize) -> Result<()> {
         self.ensure_valid_license()?;
         let num_admin_seats = match self.r#type {
-            LicenseType::Community => 1,
+            LicenseType::Community => 100,
             LicenseType::Team => 3,
             LicenseType::Enterprise => usize::MAX,
         };

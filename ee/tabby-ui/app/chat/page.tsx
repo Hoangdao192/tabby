@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
-import tabbyUrl from '@/assets/tabby.png'
+import tabbyUrl from '@/assets/MSB.jpg'
 import { useWindowSize } from '@uidotdev/usehooks'
 import Color from 'color'
 import { ErrorBoundary } from 'react-error-boundary'
@@ -349,7 +349,7 @@ export default function ChatPage() {
             }}
             width={18}
           />
-          <p className="font-semibold">Tabby</p>
+          <p className="font-semibold">MSB CodeGen</p>
         </div>
         {children}
       </div>
@@ -408,7 +408,7 @@ export default function ChatPage() {
       <StaticContent>
         <>
           <p className="opacity-80">
-            Welcome to Tabby Chat! Just a moment while we get things ready...
+            Welcome to MSB CodeGen Chat! Just a moment while we get things ready...
           </p>
           <IconSpinner
             className="mx-auto"

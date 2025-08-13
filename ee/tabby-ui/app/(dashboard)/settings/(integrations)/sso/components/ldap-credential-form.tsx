@@ -410,7 +410,7 @@ export function LDAPCredentialForm({
           <div className="mt-4">
             <SubTitle>User information mapping</SubTitle>
             <FormDescription>
-              Maps the field names from user info API to the Tabby user.
+              Maps the field names from user info API to the MSB CodeGen user.
             </FormDescription>
           </div>
           <FormField

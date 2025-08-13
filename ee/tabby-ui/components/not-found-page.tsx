@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import logoDarkUrl from '@/assets/logo-dark.png'
-import logoUrl from '@/assets/logo.png'
+import logoUrl from '@/assets/logo.jpg'
 
 import { cn } from '@/lib/utils'
 

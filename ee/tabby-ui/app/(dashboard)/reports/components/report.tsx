@@ -44,7 +44,7 @@ export function Report() {
     <div className="- w-[calc(100vw-2rem)] md:w-auto 2xl:mx-auto 2xl:max-w-5xl">
       <div className="sticky top-16 z-10 -mt-4 flex flex-col items-center justify-between gap-y-2 border-b bg-background py-4 lg:flex-row lg:items-end lg:gap-y-0">
         <SubHeader className="mb-0">
-          Statistics around Tabby IDE / Extensions
+          Statistics around MSB CodeGen IDE / Extensions
         </SubHeader>
 
         <LoadingWrapper

@@ -1,26 +1,24 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.tabbyml.intellij-tabby</id>
+    <id>com.msb.intellij-msbcodegen</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Tabby</name>
+    <name>MSB CodeGen</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://tabbyml.com">TabbyML</vendor>
+    <vendor >MSB</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-        <h1 id="tabby-plugin-for-intellij-platform">Tabby Plugin for IntelliJ Platform</h1>
-        <p>Tabby is an AI coding assistant that can suggest multi-line code or full functions in real-time.</p>
+        <h1 id="msb-codegen-plugin-for-intellij-platform">MSB CodeGen Plugin for IntelliJ Platform</h1>
+        <p>MSB CodeGen is an AI coding assistant that can suggest multi-line code or full functions in real-time.</p>
         <br/>
-        <p>For more information, please check out our <a href="https://tabbyml.com/">Website</a> and <a href="https://github.com/TabbyML/tabby">GitHub</a>.
-        If you encounter any problem or have any suggestion, please <a href="https://github.com/TabbyML/tabby/issues/new">open an issue</a>, or join our <a href="https://links.tabbyml.com/join-slack-extensions">Slack community</a> for more support!</p>
         <h2 id="requirements">Requirements</h2>
-        Tabby plugin requires <a href="https://nodejs.org/">Node.js</a> v18+ installed. </p>
+        MSB CodeGen plugin requires <a href="https://nodejs.org/">Node.js</a> v18+ installed. </p>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -48,7 +46,7 @@
                 parentId="editor"
                 instance="com.tabbyml.intellijtabby.settings.Configurable"
                 id="com.tabbyml.intellijtabby.settings.Configurable"
-                displayName="Tabby"/>
+                displayName="MSB CodeGen"/>
         <notificationGroup id="com.tabbyml.intellijtabby.notifications.info"
                            displayType="BALLOON"
                            bundle="strings"
@@ -60,7 +58,7 @@
         <projectService serviceInterface="com.tabbyml.intellijtabby.git.GitProvider"
                         serviceImplementation="com.tabbyml.intellijtabby.git.DummyGitProvider"/>
         <toolWindow
-                id="Tabby"
+                id="MSB CodeGen"
                 anchor="right"
                 icon="com.tabbyml.intellijtabby.Icons.Chat"
                 factoryClass="com.tabbyml.intellijtabby.widgets.ChatToolWindowFactory"/>
@@ -76,7 +74,7 @@
     </extensions>
 
     <actions>
-        <group id="Tabby.ToolsMenu" popup="true" text="Tabby" description="Tabby AI code assistant">
+        <group id="Tabby.ToolsMenu" popup="true" text="MSB CodeGen" description="MSB CodeGen AI code assistant">
             <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="CodeCompletionGroup"/>
             <action id="Tabby.InlineCompletion.Trigger"
                     class="com.tabbyml.intellijtabby.actions.inlineCompletion.Trigger"
@@ -126,8 +124,8 @@
             <separator/>
             <action id="Tabby.OpenChatToolWindow"
                     class="com.tabbyml.intellijtabby.actions.chat.OpenChatToolWindow"
-                    text="Open Tabby Chat..."
-                    description="Open a tool window to chat with Tabby.">
+                    text="Open MSB CodeGen Chat..."
+                    description="Open a tool window to chat with MSB CodeGen.">
             </action>
             <separator/>
             <action id="Tabby.ToggleInlineCompletionTriggerMode"
@@ -138,33 +136,8 @@
             <action id="Tabby.OpenSettings"
                     class="com.tabbyml.intellijtabby.actions.OpenSettings"
                     text="Open Settings..."
-                    description="Show settings for Tabby.">
+                    description="Show settings for MSB CodeGen.">
             </action>
-            <group id="Tabby.OpenOnlineHelp"
-                   popup="true"
-                   text="Open Online Help"
-                   description="View useful links for online help.">
-                <action id="Tabby.OpenOnlineHelp.OpenOnlineDocumentation"
-                        class="com.tabbyml.intellijtabby.actions.OpenOnlineDocumentation"
-                        text="Online Documentation..."
-                        description="Open the documentation page in your web browser.">
-                </action>
-                <action id="Tabby.OpenOnlineHelp.OpenModelRegistry"
-                        class="com.tabbyml.intellijtabby.actions.OpenModelRegistry"
-                        text="Model Registry..."
-                        description="Explore more recommend models from Tabby's model registry.">
-                </action>
-                <action id="Tabby.OpenOnlineHelp.JoinTabbySlackCommunity"
-                        class="com.tabbyml.intellijtabby.actions.JoinTabbySlackCommunity"
-                        text="Tabby Slack Community..."
-                        description="Join Tabby's Slack community to get help or feed back.">
-                </action>
-                <action id="Tabby.OpenOnlineHelp.OpenTabbyGithubRepo"
-                        class="com.tabbyml.intellijtabby.actions.OpenTabbyGithubRepo"
-                        text="Tabby GitHub Repository..."
-                        description="View the source code for Tabby, and open issues.">
-                </action>
-            </group>
             <separator/>
             <action id="Tabby.CheckIssueDetail"
                     class="com.tabbyml.intellijtabby.actions.CheckIssueDetail"
@@ -173,49 +146,49 @@
             </action>
         </group>
 
-        <group id="Tabby.EditorContext" popup="true" text="Tabby">
+        <group id="Tabby.EditorContext" popup="true" text="MSB CodeGen">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
             <action id="Tabby.InlineChat.Open" class="com.tabbyml.intellijtabby.inlineChat.InlineChatAction"
-                    text="Open Tabby Inline Edit"
-                    description="Open a inline chat widget to chat with Tabby to modify your code.">
+                    text="Open MSB CodeGen Inline Edit"
+                    description="Open a inline chat widget to chat with MSB CodeGen to modify your code.">
                 <keyboard-shortcut first-keystroke="ctrl I" keymap="$default"/>
             </action>
             <separator/>
             <action id="Tabby.Chat.AddSelectionToChat"
                     class="com.tabbyml.intellijtabby.actions.chat.AddSelectionToChat"
                     text="Add Selection to Chat"
-                    description="Add the selected text to Tabby chat panel for reference.">
+                    description="Add the selected text to MSB CodeGen chat panel for reference.">
             </action>
             <action id="Tabby.Chat.AddFileToChat"
                     class="com.tabbyml.intellijtabby.actions.chat.AddFileToChat"
                     text="Add File to Chat"
-                    description="Add the current file to Tabby chat panel for reference.">
+                    description="Add the current file to MSB CodeGen chat panel for reference.">
             </action>
             <separator/>
             <action id="Tabby.Chat.Explain"
                     class="com.tabbyml.intellijtabby.actions.chat.Explain"
                     text="Explain"
-                    description="Explain the selected code using Tabby chat.">
+                    description="Explain the selected code using MSB CodeGen chat.">
             </action>
             <action id="Tabby.Chat.Fix"
                     class="com.tabbyml.intellijtabby.actions.chat.Fix"
                     text="Fix"
-                    description="Fix the selected code using Tabby chat.">
+                    description="Fix the selected code using MSB CodeGen chat.">
             </action>
             <action id="Tabby.Chat.CodeReview"
                     class="com.tabbyml.intellijtabby.actions.chat.CodeReview"
                     text="Code Review"
-                    description="Review the selected code using Tabby chat.">
+                    description="Review the selected code using MSB CodeGen chat.">
             </action>
             <action id="Tabby.Chat.GenerateDocs"
                     class="com.tabbyml.intellijtabby.actions.chat.GenerateDocs"
                     text="Generate Docs"
-                    description="Generate documentation for the selected code using Tabby chat.">
+                    description="Generate documentation for the selected code using MSB CodeGen chat.">
             </action>
             <action id="Tabby.Chat.GenerateTests"
                     class="com.tabbyml.intellijtabby.actions.chat.GenerateTests"
                     text="Generate Tests"
-                    description="Generate tests for the selected code using Tabby chat.">
+                    description="Generate tests for the selected code using MSB CodeGen chat.">
             </action>
         </group>
 
@@ -227,7 +200,6 @@
             <reference id="Tabby.OpenChatToolWindow"/>
             <separator/>
             <reference id="Tabby.OpenSettings"/>
-            <reference id="Tabby.OpenOnlineHelp"/>
         </group>
 
         <group id="Tabby.ChatToolWindowToolbar">

@@ -119,7 +119,7 @@ function LicenseTips({
   return (
     <>
       <div>
-        This feature is only available on Tabby&apos;s{' '}
+        This feature is only available on MSB CodeGen&apos;s{' '}
         <span className="font-semibold">{insufficientLicenseText}</span> plan.
         Upgrade to use this feature.
       </div>

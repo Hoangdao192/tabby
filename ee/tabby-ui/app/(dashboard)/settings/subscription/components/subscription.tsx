@@ -38,7 +38,7 @@ export default function Subscription() {
         externalLink="https://links.tabbyml.com/schedule-a-demo"
         externalLinkText="📆 Book a 30-minute product demo"
       >
-        You can upload your Tabby license to unlock team/enterprise features.
+        You can upload your license to unlock team/enterprise features.
       </SubHeader>
       <div className="flex flex-col gap-8">
         <LoadingWrapper

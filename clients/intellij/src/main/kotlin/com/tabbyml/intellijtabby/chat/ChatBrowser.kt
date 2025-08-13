@@ -414,7 +414,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
       when (statusInfo.status) {
         StatusInfo.Status.CONNECTING -> {
           currentConfig = null
-          showContent("Connecting to Tabby server...")
+          showContent("Connecting to MSB CodeGen server...")
         }
 
         StatusInfo.Status.UNAUTHORIZED -> {
@@ -424,7 +424,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
 
         StatusInfo.Status.DISCONNECTED -> {
           currentConfig = null
-          showContent("Cannot connect to Tabby server, please check your settings.")
+          showContent("Cannot connect to MSB CodeGen server, please check your settings.")
         }
 
         else -> {
@@ -665,7 +665,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
           return undefined;
         }
       }).then((version) => {
-        console.log('Tabby Chat Panel API version: ' + version);
+        console.log('MSB CodeGen Chat Panel API version: ' + version);
         const callback = $jsHandleChatPanelClientCreated;
         callback(version);
       });
@@ -722,7 +722,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
             $jsChatPanelResponseHandlerInjection
           }
         } else {
-          const results = JSON.stringify(['$uuid', 'Tabby chat panel client is not connected.', null])
+          const results = JSON.stringify(['$uuid', 'MSB CodeGen chat panel client is not connected.', null])
           $jsChatPanelResponseHandlerInjection
         }
       })()
@@ -756,7 +756,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
 
     private fun checkServerHealth(serverHealth: Map<String, Any>?): String? {
       if (serverHealth == null) {
-        return "Connecting to Tabby server..."
+        return "Connecting to MSB CodeGen server..."
       }
       if (serverHealth["webserver"] == null || serverHealth["chat_model"] == null) {
         return "You need to launch the server with the chat model enabled; for example, use `--chat-model Qwen2-1.5B-Instruct`."
@@ -778,7 +778,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
         }
         if (version != null && !Constraint.parse(TABBY_SERVER_VERSION_RANGE).satisfiedBy(version)) {
           return String.format(
-            "Tabby Chat requires Tabby server version %s. Your server is running version %s.",
+            "MSB CodeGen Chat requires MSB CodeGen server version %s. Your server is running version %s.",
             TABBY_SERVER_VERSION_RANGE, version.toString()
           )
         }
@@ -862,15 +862,15 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
 
     private fun loadTabbyChatPanelScript(): String {
       val script =
-        PluginManagerCore.getPlugin(PluginId.getId("com.tabbyml.intellij-tabby"))
+        PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-msbcodegen"))
           ?.pluginPath
           ?.resolve("tabby-chat-panel/iife/tabby-chat-panel.min.js")
           ?.toFile()
       if (script?.exists() == true) {
-        logger<ChatBrowser>().info("Tabby-chat-panel script path: ${script.absolutePath}")
+        logger<ChatBrowser>().info("MSB CodeGen-chat-panel script path: ${script.absolutePath}")
         return script.readText()
       } else {
-        throw InitializationException("Tabby-chat-panel script not found. Please reinstall Tabby plugin.")
+        throw InitializationException("MSB CodeGen-chat-panel script not found. Please reinstall MSB CodeGen plugin.")
       }
     }
 
@@ -930,7 +930,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
       <body>
         <div id="message">
           <div>
-            <h4>Welcome to Tabby Chat</h4>
+            <h4>Welcome to MSB CodeGen Chat</h4>
             <p id="messageContent"></p>
             <a href="javascript:reload();">Reload</a>
           </div>

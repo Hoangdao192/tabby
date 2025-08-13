@@ -12,8 +12,7 @@ export function FooterText({ className, ...props }: React.ComponentProps<'p'>) {
       )}
       {...props}
     >
-      <ExternalLink href="https://tabby.tabbyml.com">Tabby</ExternalLink>, an
-      opensource, self-hosted AI coding assistant .
+      MSB CodeGen, an AI coding assistant .
     </p>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import tabbyUrl from '@/assets/logo-dark.png'
+import tabbyUrl from '@/assets/MSB.jpg'
 import { compact } from 'lodash-es'
 import { useQuery } from 'urql'
 import { useStore } from 'zustand'
@@ -32,7 +32,6 @@ import { BrandingLogo } from '@/components/branding-logo'
 import { ClientOnly } from '@/components/client-only'
 import { BANNER_HEIGHT, useShowDemoBanner } from '@/components/demo-banner'
 import { NotificationBox } from '@/components/notification-box'
-import SlackDialog from '@/components/slack-dialog'
 import TextAreaSearch from '@/components/textarea-search'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { MyAvatar } from '@/components/user-avatar'
@@ -218,7 +217,6 @@ export default function Home() {
   return (
     <div>
       <MainPanel />
-      <SlackDialog />
     </div>
   )
 }

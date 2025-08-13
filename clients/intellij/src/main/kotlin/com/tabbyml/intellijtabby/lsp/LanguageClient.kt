@@ -46,7 +46,7 @@ class LanguageClient(private val project: Project) : com.tabbyml.intellijtabby.l
     val appInfo = ApplicationInfo.getInstance()
     val appVersion = appInfo.fullVersion
     val appName = appInfo.fullApplicationName.replace(appVersion, "").trim()
-    val pluginId = "com.tabbyml.intellij-tabby"
+    val pluginId = "com.msb.intellij-msbcodegen"
     val pluginVersion = PluginManagerCore.getPlugin(PluginId.getId(pluginId))?.version
     val params = InitializeParams(
       processId = ProcessHandle.current().pid().toInt(), clientInfo = ClientInfo(
@@ -339,7 +339,7 @@ class LanguageClient(private val project: Project) : com.tabbyml.intellijtabby.l
         val actions = params.actions.map { it.title }.toTypedArray()
         val selected = Messages.showDialog(
           params.message,
-          "Tabby",
+          "MSB CodeGen",
           actions,
           0,
           when (params.type) {

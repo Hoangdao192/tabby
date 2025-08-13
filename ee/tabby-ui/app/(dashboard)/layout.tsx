@@ -7,7 +7,7 @@ import Layout from './components/dashboard-layout'
 export const metadata: Metadata = {
   title: {
     default: 'Dashboard',
-    template: `Tabby - %s`
+    template: `MSB CodeGen - %s`
   }
 }
 

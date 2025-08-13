@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import tabbyLogo from '@/assets/tabby.png'
+import tabbyLogo from '@/assets/MSB.jpg'
 import { ChatCommand } from 'tabby-chat-panel/index'
 
 import { cn } from '@/lib/utils'

@@ -3,15 +3,15 @@
 ### Features
 
 - **Chat**:
-  - Requires Tabby Server 0.27.0 or later.
-  - You can now select code in the editor and use the `Code Review` option from the context menu to review your code and add comments using Tabby Chat.
+  - Requires MSB CodeGen Server 0.27.0 or later.
+  - You can now select code in the editor and use the `Code Review` option from the context menu to review your code and add comments using MSB CodeGen Chat.
 
 ## 1.12.0
 
 ### Features
 
 - **Chat**:
-  - Requires connecting to a Tabby server version 0.26.0 or later.
+  - Requires connecting to a MSB CodeGen server version 0.26.0 or later.
   - Added support to view recent chat history in the chat panel.
 - Added an action `Generate Commit Message` in the `Git` menu to generate a commit message based on the current changes.
 
@@ -20,7 +20,7 @@
 ### Features
 
 - **Chat**:
-  - Requires connecting to a Tabby server version 0.25.0 or later.
+  - Requires connecting to a MSB CodeGen server version 0.25.0 or later.
   - Now uses the active editor as context by default.
 
 ### Fixes & Improvements
@@ -40,19 +40,19 @@
 - **Chat**:
   - Added support to explicitly select a configured Git repository as the context for chat conversations.
   - Added support to use the active editor selection as the context for chat conversations.
-  - **Note**: Requires updating the Tabby server to version 0.23.0 or later.
+  - **Note**: Requires updating the MSB CodeGen server to version 0.23.0 or later.
 
 ## 1.9.1
 
 ### Fixes & Improvements
 
-- Updated the chat panel to be compatible with Tabby server versions 0.21.2, 0.22.0, and later.
+- Updated the chat panel to be compatible with MSB CodeGen server versions 0.21.2, 0.22.0, and later.
 
 ## 1.9.0
 
 ### Features
 
-- Added a list of actions in the editor's right-click context menu to interact with the Tabby chat panel.
+- Added a list of actions in the editor's right-click context menu to interact with the MSB CodeGen chat panel.
 
 ### Fixes & Improvements
 
@@ -79,19 +79,19 @@
 
 ### Fixes & Improvements
 
-- Fixed a bug that caused the Tabby plugin to not initialize when TLS certificates failed to load. (https://github.com/TabbyML/tabby/issues/3248)
+- Fixed a bug that caused the MSB CodeGen plugin to not initialize when TLS certificates failed to load. (https://github.com/TabbyML/tabby/issues/3248)
 
 ## 1.8.2
 
 ### Fixes & Improvements
 
-- Fix DataStore initialization that prevented Tabby from starting on a fresh installation. (https://github.com/TabbyML/tabby/issues/3234)
+- Fix DataStore initialization that prevented MSB CodeGen from starting on a fresh installation. (https://github.com/TabbyML/tabby/issues/3234)
 
 ## 1.8.1
 
 ### Features
 
-- Updated the chat panel to compatible with Tabby server v0.18.0 or later.
+- Updated the chat panel to compatible with MSB CodeGen server v0.18.0 or later.
 
 ## 1.7.1
 
@@ -108,7 +108,7 @@
 
 ### Fixes & Improvements
 
-- Fixed a bug that caused the Tabby plugin to get stuck in initialization when an editor has no related virtual file.
+- Fixed a bug that caused the MSB CodeGen plugin to get stuck in initialization when an editor has no related virtual file.
 
 ## 1.6.2
 
@@ -137,8 +137,8 @@
 ### Features
 
 - Added support for loading system-wide CA certificates. Previously, only Node.js bundled CA certificates were used.
-- Added support for loading configurations from Tabby server, including `Disabling Client-side Telemetry`.
-- Removed the notification when disconnected from Tabby server, keep only status bar icon.
+- Added support for loading configurations from MSB CodeGen server, including `Disabling Client-side Telemetry`.
+- Removed the notification when disconnected from MSB CodeGen server, keep only status bar icon.
 
 ### Fixes
 
@@ -165,7 +165,7 @@
 ### Fixes:
 
 - Fixed a bug caused `Check Connection` never ends when endpoint config left blank.
-- Fixed health checking to be compatible with Tabby server version 0.2.0 or earlier.
+- Fixed health checking to be compatible with MSB CodeGen server version 0.2.0 or earlier.
 
 ## 1.2.0
 
@@ -174,11 +174,11 @@
 - Added support for partially accepting a completion.
   - Use `Ctrl + Right` to accept the next word, use `Ctrl + Tab` to accept the next line.
   - Keymap scheme can be selected or customized in the plugin settings page.
-- Added support for setting Tabby server token in the plugin settings page.
+- Added support for setting MSB CodeGen server token in the plugin settings page.
   - You can still configure the token in the agent config file, but the token set in plugin settings page will take precedence.
 - A notification will now be displayed when the server requires a token.
-- Removed support for automatically opening the authentication page and fetching the token when using Tabby Cloud.
-  - To connect to Tabby Cloud server, you need to manually set the token instead. The token already in use will remain usable.
+- Removed support for automatically opening the authentication page and fetching the token when using MSB CodeGen Cloud.
+  - To connect to MSB CodeGen Cloud server, you need to manually set the token instead. The token already in use will remain usable.
 
 ### Fixes:
 
@@ -206,7 +206,7 @@
 - Added a `Check Connection` button in settings page to check the connection to the server.
 - Added notification with error messages when the connection to the server fails.
 - Added a loading status indicator when fetching completions in automatic trigger mode.
-- Updated the online help links, including online documentation, the Tabby Slack community, and the GitHub repository.
+- Updated the online help links, including online documentation, the MSB CodeGen Slack community, and the GitHub repository.
 - Added an option to mute warning messages for the slow completion response time.
 - Updated the config.toml file to include new configuration options: `server.auth` and `completion.timeout`.
 - Added experimental features aimed at fine-tuning completion quality. These features are disabled by default but can be enabled by setting the corresponding config flag to `true` in the `config.toml` file, include:
@@ -251,14 +251,14 @@
 ### Fixes:
 
 - Fixed a bug that causes auto-completion requests cannot be cancelled.
-- Migrated Tabby cloud authorization tokens and anonymous usage tracking id from the old data directory to the new one.
+- Migrated MSB CodeGen cloud authorization tokens and anonymous usage tracking id from the old data directory to the new one.
 
 ## 0.4.0
 
 ### Features:
 
-- Relocated the user data directory from `$HOME/.tabby/agent` to `$HOME/.tabby-client/agent` to avoid conflicts with Tabby server data. Note that the old data will not be migrated automatically. Please update the config file manually if you have made changes in the old path.
-- Added a template config file for Tabby client agent located at `$HOME/.tabby-client/agent/config.toml`.
+- Relocated the user data directory from `$HOME/.tabby/agent` to `$HOME/.tabby-client/agent` to avoid conflicts with MSB CodeGen server data. Note that the old data will not be migrated automatically. Please update the config file manually if you have made changes in the old path.
+- Added a template config file for MSB CodeGen client agent located at `$HOME/.tabby-client/agent/config.toml`.
 - Added check for Node.js installation and notify the user if it is not valid.
 - Improved code suggestion filtering by indentation context. Suggestions now prioritize completing the current line or logic block, preventing excessively long suggestions.
 - Added adaptive completion debouncing for auto-completion requests.
@@ -272,7 +272,7 @@
 
 ### Features:
 
-- Added support for Tabby Cloud hosted server authorization.
+- Added support for MSB CodeGen Cloud hosted server authorization.
 
 ### Fixes:
 - Fixed inlay text rendering issues.

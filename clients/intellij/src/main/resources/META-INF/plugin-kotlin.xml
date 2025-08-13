@@ -1,5 +1,5 @@
 <idea-plugin>
-    <extensions defaultExtensionNs="com.tabbyml.intellij-tabby">
+    <extensions defaultExtensionNs="com.msb.intellij-msbcodegen">
         <languageSupportProvider
                 implementation="com.tabbyml.intellijtabby.languageSupport.KotlinLanguageSupportProvider"/>
     </extensions>

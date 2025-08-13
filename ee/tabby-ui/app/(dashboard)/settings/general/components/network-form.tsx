@@ -82,7 +82,7 @@ const NetworkForm: React.FC<NetworkFormProps> = ({
               <FormItem>
                 <FormLabel>External URL</FormLabel>
                 <FormDescription>
-                  The external URL where user visits Tabby, must start with
+                  The external URL where user visits MSB CodeGen, must start with
                   http:// or https://.
                 </FormDescription>
                 <FormControl>

@@ -28,7 +28,7 @@ export default function SelfSignupSection() {
             <IconCheckCircled className="h-12 w-12 text-successful-foreground" />
           </div>
           <h1 className="text-2xl font-semibold tracking-tight">
-            Create your Tabby account
+            Create your MSB CodeGen account
           </h1>
           <p className="pb-4 text-sm text-muted-foreground">
             Request received successfully! You’ll receive an email with a signup
@@ -46,7 +46,7 @@ export default function SelfSignupSection() {
     <div className="w-[350px] space-y-6">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
-          Create your Tabby account
+          Create your MSB CodeGen account
         </h1>
         <p className="text-sm text-muted-foreground">
           To register your account, please enter your email address.

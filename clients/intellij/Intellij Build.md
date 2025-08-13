@@ -12,7 +12,7 @@ gradlew.bat build
 
 # Open Intellij Idea and install the plugin
 # ⚙️ -> Plugins -> ⚙️ -> Install plugin from disk...
-# Choose the file at ./build/distributions/intellij-tabby.zip
+# Choose the file at ./build/distributions/intellij-msb-codegen.zip
 ```
 
 ## Architecture

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import tabbyLogo from '@/assets/tabby.png'
+import tabbyLogo from '@/assets/MSB.jpg'
 import prettyBytes from 'pretty-bytes'
 import { toast } from 'sonner'
 
@@ -110,8 +110,8 @@ export const BlobHeader: React.FC<BlobHeaderProps> = ({
                     className="flex shrink-0 items-center gap-1 px-2"
                     onClick={e => setChatSideBarVisible(!chatSideBarVisible)}
                   >
-                    <Image alt="Tabby logo" src={tabbyLogo} width={24} />
-                    Ask Tabby
+                    <Image alt="MSB logo" src={tabbyLogo} width={24} />
+                    Ask MSB CodeGen
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Open chat panel</TooltipContent>

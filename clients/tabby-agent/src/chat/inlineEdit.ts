@@ -40,7 +40,7 @@ export class ChatEditProvider implements Feature {
     private readonly chat: ChatFeature,
     private readonly configurations: Configurations,
     private readonly documents: TextDocuments<TextDocument>,
-  ) {}
+  ) { }
 
   initialize(connection: Connection, clientCapabilities: ClientCapabilities): ServerCapabilities {
     this.lspConnection = connection;
@@ -119,9 +119,9 @@ export class ChatEditProvider implements Feature {
         format: "text",
         range: range
           ? {
-              start: { line: range.start.line, character: 0 },
-              end: { line: range.end.line, character: range.end.character },
-            }
+            start: { line: range.start.line, character: 0 },
+            end: { line: range.end.line, character: range.end.character },
+          }
           : undefined,
       };
       this.logger.trace("Fetching text content from ReadFileRequest.", { params });
@@ -241,8 +241,8 @@ export class ChatEditProvider implements Feature {
 
     const fileContext = !isBlank(fileContextItems)
       ? formatPlaceholders(fileContextListTemplate, {
-          fileList: fileContextItems,
-        })
+        fileList: fileContextItems,
+      })
       : "";
 
     const messages: { role: "user"; content: string }[] = [
@@ -270,7 +270,7 @@ export class ChatEditProvider implements Feature {
       mutexAbortController?.signal,
     );
 
-    const editId = "tabby-" + cryptoRandomString({ length: 6, type: "alphanumeric" });
+    const editId = "msbcodegen-" + cryptoRandomString({ length: 6, type: "alphanumeric" });
     this.currentEdit = {
       id: editId,
       location: params.location,
@@ -331,7 +331,7 @@ export class ChatEditProvider implements Feature {
         end: { line: line + 1, character: 0 },
       });
 
-      const match = /^>>>>>>> (tabby-[0-9|a-z|A-Z]{6}) (\[.*\])/g.exec(lineText);
+      const match = /^>>>>>>> (msbcodegen-[0-9|a-z|A-Z]{6}) (\[.*\])/g.exec(lineText);
       markers = match?.[2];
       if (markers) {
         break;

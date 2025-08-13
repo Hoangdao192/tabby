@@ -9,7 +9,7 @@ class CommandHistoryState : BaseState() {
 @Service
 @State(
     name = "com.tabbyml.intellijtabby.inlineChat.CommandHistory",
-    storages = [Storage("intellij-tabby-command-history.xml")]
+    storages = [Storage("intellij-msb-codegen-command-history.xml")]
 )
 class CommandHistory : SimplePersistentStateComponent<CommandHistoryState>(CommandHistoryState()) {
     private val maxHistorySize = 30

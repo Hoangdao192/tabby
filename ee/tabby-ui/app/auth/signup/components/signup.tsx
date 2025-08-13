@@ -23,7 +23,7 @@ export default function Signup() {
   return (
     <Content
       title="No invitation code"
-      description="Please contact your Tabby admin for an invitation code to register"
+      description="Please contact your MSB CodeGen admin for an invitation code to register"
     />
   )
 }

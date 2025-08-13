@@ -53,7 +53,7 @@ class ConnectionService(private val project: Project) : Disposable {
   open class InitializationException(message: String) : Exception(message)
 
   open class NodeBinaryException(message: String) : InitializationException(
-    message = "$message Please install Node.js version >= 18.0, set the binary path in Tabby plugin settings or add bin path to system environment variable PATH, then restart IDE."
+    message = "$message Please install Node.js version >= 18.0, set the binary path in MSB CodeGen plugin settings or add bin path to system environment variable PATH, then restart IDE."
   )
 
   open class NodeBinaryNotFoundException : NodeBinaryException(
@@ -66,7 +66,7 @@ class ConnectionService(private val project: Project) : Disposable {
 
   private suspend fun initialize(retry: Int = 0) {
     try {
-      logger.info("Creating tabby-agent process...")
+      logger.info("Creating msb-codegen-agent process...")
       project.safeSyncPublisher(Listener.TOPIC)?.connectionStateChanged(State.INITIALIZING)
       val node = getNodeBinary()
       val script = getNodeScript()
@@ -80,7 +80,7 @@ class ConnectionService(private val project: Project) : Disposable {
         Launcher.Builder<LanguageServer>().setLocalService(client).setRemoteInterface(LanguageServer::class.java)
           .setInput(process.inputStream).setOutput(process.outputStream).traceMessages(PrintWriter(Tracer())).create()
       val server = launcher.remoteProxy
-      logger.info("Created tabby-agent process with PID: ${process.pid()}, listening to stdio.")
+      logger.info("Created msb-codegen-agent process with PID: ${process.pid()}, listening to stdio.")
 
       this.process = process
       this.server = server
@@ -169,13 +169,13 @@ class ConnectionService(private val project: Project) : Disposable {
 
   private fun getNodeScript(): File {
     val script =
-      PluginManagerCore.getPlugin(PluginId.getId("com.tabbyml.intellij-tabby"))?.pluginPath?.resolve("tabby-agent/node/index.js")
+      PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-msbcodegen"))?.pluginPath?.resolve("tabby-agent/node/index.js")
         ?.toFile()
     if (script?.exists() == true) {
       logger.info("Node script path: ${script.absolutePath}")
       return script
     } else {
-      throw InitializationException("Node script not found. Please reinstall Tabby plugin.")
+      throw InitializationException("Node script not found. Please reinstall MSB CodeGen plugin.")
     }
   }
 

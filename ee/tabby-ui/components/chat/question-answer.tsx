@@ -3,7 +3,7 @@
 
 import React, { useMemo } from 'react'
 import Image from 'next/image'
-import tabbyLogo from '@/assets/tabby.png'
+import tabbyLogo from '@/assets/MSB.jpg'
 import { compact, isEmpty, isEqual, isNil, uniqWith } from 'lodash-es'
 
 import { MARKDOWN_CITATION_REGEX } from '@/lib/constants/regex'
@@ -502,7 +502,7 @@ function AssistantMessageCard(props: AssistantMessageCardProps) {
           <div className="shrink-0 select-none rounded-full border bg-background shadow">
             <IconTabby className="h-8 w-8" />
           </div>
-          <p className="block text-sm font-bold">Tabby</p>
+          <p className="block text-sm font-bold">MSB CodeGen</p>
         </div>
 
         <AssistantMessageCardActions
@@ -648,7 +648,7 @@ function IconTabby({ className }: { className?: string }) {
       style={{ backgroundColor: '#E8E2D2' }}
       className={cn('rounded-full p-0.5', className)}
       src={tabbyLogo}
-      alt="tabby"
+      alt="MSB"
     />
   )
 }

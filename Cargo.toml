@@ -24,10 +24,10 @@ members = [
 ]
 
 [workspace.package]
-version = "0.30.0-dev.0"
+version = "0.30.0-fork"
 edition = "2021"
-authors = ["TabbyML Team"]
-homepage = "https://github.com/TabbyML/tabby"
+authors = ["MSB"]
+homepage = "https://localhost:8080/"
 
 [workspace.dependencies]
 cached = "0.49.3"

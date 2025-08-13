@@ -134,7 +134,7 @@ class DiffHighLightingPass(project: Project, document: Document, val editor: Edi
             val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
                 .range(textRange)
                 .textAttributes(attributes)
-                .descriptionAndTooltip("Tabby inline diff")
+                .descriptionAndTooltip("MSB CodeGen inline diff")
                 .severity(HighlightSeverity.TEXT_ATTRIBUTES)
             val highlight = builder.create() ?: continue
             highlights.add(highlight)
