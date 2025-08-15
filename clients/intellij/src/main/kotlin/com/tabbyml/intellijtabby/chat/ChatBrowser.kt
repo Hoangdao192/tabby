@@ -648,7 +648,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
 
   private fun jsCreateChatPanelClient() {
     val script = """
-      TabbyChatPanel.createClient(getChatPanel(), {
+      MSBCodeGenChatPanel.createClient(getChatPanel(), {
         refresh: $jsHandleChatPanelRefresh,
         onApplyInEditor: $jsHandleChatPanelOnApplyInEditor,
         onCopy: $jsHandleChatPanelOnCopy,
@@ -862,7 +862,7 @@ class ChatBrowser(private val project: Project) : JBCefBrowser(
 
     private fun loadTabbyChatPanelScript(): String {
       val script =
-        PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-msbcodegen"))
+        PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-codegen"))
           ?.pluginPath
           ?.resolve("tabby-chat-panel/iife/tabby-chat-panel.min.js")
           ?.toFile()

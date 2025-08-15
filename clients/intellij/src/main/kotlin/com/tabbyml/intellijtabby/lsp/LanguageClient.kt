@@ -46,7 +46,7 @@ class LanguageClient(private val project: Project) : com.tabbyml.intellijtabby.l
     val appInfo = ApplicationInfo.getInstance()
     val appVersion = appInfo.fullVersion
     val appName = appInfo.fullApplicationName.replace(appVersion, "").trim()
-    val pluginId = "com.msb.intellij-msbcodegen"
+    val pluginId = "com.msb.intellij-codegen"
     val pluginVersion = PluginManagerCore.getPlugin(PluginId.getId(pluginId))?.version
     val params = InitializeParams(
       processId = ProcessHandle.current().pid().toInt(), clientInfo = ClientInfo(

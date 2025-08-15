@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 class LanguageSupportService(private val project: Project) {
   private val logger = logger<LanguageSupportService>()
   private val languageSupportProviderExtensionPoint: ExtensionPointName<LanguageSupportProvider> =
-    ExtensionPointName.create("com.msb.intellij-msbcodegen.languageSupportProvider")
+    ExtensionPointName.create("com.msb.intellij-codegen.languageSupportProvider")
   private val defaultLanguageSupportProvider = DefaultLanguageSupportProvider()
 
   fun provideSemanticTokensRange(fileRange: FileRange): CompletableFuture<List<SemanticToken>?> {

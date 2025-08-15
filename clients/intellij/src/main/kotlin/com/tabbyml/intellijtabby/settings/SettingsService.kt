@@ -10,7 +10,7 @@ import com.tabbyml.intellijtabby.safeSyncPublisher
 
 @Service
 @State(
-  name = "com.tabbyml.intellijtabby.settings.SettingsService", storages = [Storage("intellij-tabby.xml")]
+  name = "com.tabbyml.intellijtabby.settings.SettingsService", storages = [Storage("intellij-msb-codegen.xml")]
 )
 class SettingsService : SimplePersistentStateComponent<SettingsState>(SettingsState()) {
   var completionTriggerMode

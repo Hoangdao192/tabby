@@ -71,7 +71,6 @@ impl ChatCompletionStream for FakeChatCompletionStream {
                             .to_string(),
                     ),
                     tool_calls: None,
-                    function_call: None,
                     refusal: None,
                 },
                 finish_reason: Some(FinishReason::Stop),
@@ -104,7 +103,6 @@ impl ChatCompletionStream for FakeChatCompletionStream {
                     delta: ChatCompletionStreamResponseDelta {
                         role: Some(Role::Assistant),
                         content: Some("This is the first part of the response. ".to_string()),
-                        function_call: None,
                         tool_calls: None,
                         refusal: None,
                     },
@@ -131,7 +129,6 @@ impl ChatCompletionStream for FakeChatCompletionStream {
                     delta: ChatCompletionStreamResponseDelta {
                         role: None,
                         content: Some("This is the second part of the response.".to_string()),
-                        function_call: None,
                         tool_calls: None,
                         refusal: None,
                     },

@@ -44,7 +44,7 @@ tasks {
 
   intellijPlatform {
     pluginConfiguration {
-      version.set("1.14.0-dev")
+      version.set("1.14.0-fork")
       changeNotes.set(provider {
         changelog.renderItem(
           changelog.getLatest(),
@@ -87,7 +87,7 @@ tasks {
         exclude("**/*.js.map")
       }
     ) {
-      into("intellij-tabby/tabby-agent/")
+      into("intellij-msb-codegen/tabby-agent/")
     }
 
     // Copy the tabby-chat-panel to the sandbox
@@ -96,7 +96,7 @@ tasks {
         include("iife/tabby-chat-panel.min.js")
       }
     ) {
-      into("intellij-tabby/tabby-chat-panel/")
+      into("intellij-msb-codegen/tabby-chat-panel/")
     }
   }
 }

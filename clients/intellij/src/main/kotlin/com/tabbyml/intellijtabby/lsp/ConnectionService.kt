@@ -169,7 +169,7 @@ class ConnectionService(private val project: Project) : Disposable {
 
   private fun getNodeScript(): File {
     val script =
-      PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-msbcodegen"))?.pluginPath?.resolve("tabby-agent/node/index.js")
+      PluginManagerCore.getPlugin(PluginId.getId("com.msb.intellij-codegen"))?.pluginPath?.resolve("tabby-agent/node/index.js")
         ?.toFile()
     if (script?.exists() == true) {
       logger.info("Node script path: ${script.absolutePath}")

@@ -1,5 +1,5 @@
 {
-  "name": "intellij-tabby",
+  "name": "intellij-msb-codegen",
   "private": true,
   "devDependencies": {
     "tabby-agent": "workspace:*",

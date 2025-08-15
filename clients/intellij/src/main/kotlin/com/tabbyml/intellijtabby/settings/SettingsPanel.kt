@@ -171,7 +171,7 @@ class SettingsPanel(private val project: Project) {
     FormBuilder.createFormBuilder().addComponent(isAnonymousUsageTrackingDisabledCheckBox).addCopyableTooltip(
       """
       <html>
-      Please disable anonymous usage tracking
+      Please disable anonymous usage tracking.
       </html>
       """
     ).panel
