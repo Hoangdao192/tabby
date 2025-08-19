@@ -16,7 +16,7 @@ import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.keymap.KeymapUtil
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
-import com.intellij.ui.SpinningProgressIcon
+import com.intellij.ui.AnimatedIcon
 import org.eclipse.lsp4j.Location
 import org.eclipse.lsp4j.Position
 import org.eclipse.lsp4j.Range
@@ -107,7 +107,7 @@ class InlineChatLoadingCodeVisionProvider : InlineChatCodeVisionProvider() {
     override val command: String = " "
     override val action: String? = null
     override val actionId: String? = null
-    override val icon: Icon = SpinningProgressIcon()
+    override val icon: Icon = AnimatedIcon.Default()
     override val relativeOrderings: List<CodeVisionRelativeOrdering> =
         listOf(CodeVisionRelativeOrdering.CodeVisionRelativeOrderingBefore("Tabby.InlineChat.Cancel"))
 }

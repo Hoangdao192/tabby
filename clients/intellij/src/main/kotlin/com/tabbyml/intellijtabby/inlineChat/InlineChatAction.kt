@@ -21,14 +21,13 @@ abstract class BaseInlineChatAction : DumbAwareAction() {
 
 class InlineChatAction : BaseInlineChatAction() {
     override fun actionPerformed(e: AnActionEvent) {
+
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val project = e.project ?: return
         InlineChatIntentionAction().invoke(project, editor, null)
     }
 
-    override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
-    }
+    
 }
 
 class InlineChatAcceptAction : BaseInlineChatAction() {
@@ -44,9 +43,7 @@ class InlineChatAcceptAction : BaseInlineChatAction() {
         }
     }
 
-    override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
-    }
+    
 }
 
 class InlineChatDiscardAction : BaseInlineChatAction() {
@@ -62,9 +59,7 @@ class InlineChatDiscardAction : BaseInlineChatAction() {
         }
     }
 
-    override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
-    }
+    
 }
 
 class InlineChatCancelAction : BaseInlineChatAction() {
@@ -80,7 +75,5 @@ class InlineChatCancelAction : BaseInlineChatAction() {
         }
     }
 
-    override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.EDT
-    }
+    
 }

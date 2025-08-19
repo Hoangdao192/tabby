@@ -45,21 +45,50 @@ struct LicenseJWTPayload {
     pub num: usize,
 }
 
+
 fn validate_license(token: &str) -> Result<LicenseJWTPayload, jwt::errors::ErrorKind> {
+    /// Validate a JWT license token.
+    ///
+    /// # Arguments
+    /// * `token` - A string slice that holds the JWT token to be validated.
+    ///
+    /// # Returns
+    /// * `Result<LicenseJWTPayload, jwt::errors::ErrorKind>` - 
+    /// If the token is valid and parses correctly, returns a `Result` with the parsed `LicenseJWTPayload`.
+    /// If there is an error during validation or parsing, returns an `Err` with the type of error encountered.
+    ///
     let mut validation = jwt::Validation::new(jwt::Algorithm::RS512);
+    // Disable expiration check since exp claims can be set to a specific date/time in the token
     validation.validate_exp = false;
+    
+    // Set the issuer to 'tabbyml.com' to help with audience verification
     validation.set_issuer(&["tabbyml.com"]);
+    
+    // Require specific claim names in the JWT: 'exp', 'iat', 'sub', and 'iss'
     validation.set_required_spec_claims(&["exp", "iat", "sub", "iss"]);
+    
     let data = jwt::decode::<LicenseJWTPayload>(token, &LICENSE_DECODING_KEY, &validation);
-    let data = data.map_err(|err| match err.kind() {
-        // Map json error (missing failed, parse error) as missing required claims.
-        jwt::errors::ErrorKind::Json(err) => {
-            jwt::errors::ErrorKind::MissingRequiredClaim(err.to_string())
-        }
-        _ => err.into_kind(),
-    });
+    
+    // Handle errors during decoding
+    let data = match data {
+        Ok(payload) => Ok(payload),
+        Err(err) => {
+            // Map jwt::errors::ErrorKind to handle missing required claims more specifically
+            data.map_err(|err| match err.kind() {
+                jwt::errors::ErrorKind::Json(err) => {
+                    jwt::errors::ErrorKind::MissingRequiredClaim(err.to_string())
+                }
+                _ => {
+                    // Otherwise, let the error propagate from jwt crate
+                    err.into_kind()
+                },
+            })
+        },
+    };
+
     Ok(data?.claims)
 }
+
 
 fn jwt_timestamp_to_utc(secs: i64) -> Result<DateTime<Utc>> {
     Ok(DateTime::from_timestamp(secs, 0).context("Timestamp is corrupt")?)
