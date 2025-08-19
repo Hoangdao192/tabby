@@ -2,7 +2,6 @@ package com.tabbyml.intellijtabby.inlineChat
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.components.serviceOrNull
 import com.intellij.openapi.project.DumbAwareAction
 import com.tabbyml.intellijtabby.actions.chat.isChatFeatureEnabled
@@ -21,18 +20,14 @@ abstract class BaseInlineChatAction : DumbAwareAction() {
 
 class InlineChatAction : BaseInlineChatAction() {
     override fun actionPerformed(e: AnActionEvent) {
-
         val editor = e.getRequiredData(CommonDataKeys.EDITOR)
         val project = e.project ?: return
         InlineChatIntentionAction().invoke(project, editor, null)
     }
-
-    
 }
 
 class InlineChatAcceptAction : BaseInlineChatAction() {
     private val scope = CoroutineScope(Dispatchers.IO)
-
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val inlineChatService = project.serviceOrNull<InlineChatService>() ?: return

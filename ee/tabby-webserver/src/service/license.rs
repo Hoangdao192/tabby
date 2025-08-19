@@ -45,7 +45,7 @@ struct LicenseJWTPayload {
     pub num: usize,
 }
 
-
+#[allow(unused_doc_comments)]
 fn validate_license(token: &str) -> Result<LicenseJWTPayload, jwt::errors::ErrorKind> {
     /// Validate a JWT license token.
     ///
@@ -70,22 +70,15 @@ fn validate_license(token: &str) -> Result<LicenseJWTPayload, jwt::errors::Error
     let data = jwt::decode::<LicenseJWTPayload>(token, &LICENSE_DECODING_KEY, &validation);
     
     // Handle errors during decoding
-    let data = match data {
-        Ok(payload) => Ok(payload),
-        Err(err) => {
-            // Map jwt::errors::ErrorKind to handle missing required claims more specifically
-            data.map_err(|err| match err.kind() {
-                jwt::errors::ErrorKind::Json(err) => {
-                    jwt::errors::ErrorKind::MissingRequiredClaim(err.to_string())
-                }
-                _ => {
-                    // Otherwise, let the error propagate from jwt crate
-                    err.into_kind()
-                },
-            })
+    let data = data.map_err(|err| match err.kind() {
+        jwt::errors::ErrorKind::Json(err) => {
+            jwt::errors::ErrorKind::MissingRequiredClaim(err.to_string())
+        }
+        _ => {
+            // Otherwise, let the error propagate from jwt crate
+            err.into_kind()
         },
-    };
-
+    });
     Ok(data?.claims)
 }
 

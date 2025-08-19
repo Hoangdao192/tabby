@@ -1,10 +1,10 @@
 use serde::Serialize;
-use tantivy::time::ext::InstantExt;
+use std::time::Instant;
 
 pub struct OpenTimer<'a> {
     name: &'static str,
     timer_tree: &'a mut TimerTree,
-    start: InstantExt,
+    start: Instant,
     depth: u32,
 }
 
@@ -17,7 +17,7 @@ impl OpenTimer<'_> {
         OpenTimer {
             name,
             timer_tree: self.timer_tree,
-            start: InstantExt::now(),
+            start: Instant::now(),
             depth: self.depth + 1,
         }
     }
