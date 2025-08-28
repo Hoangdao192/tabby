@@ -6,10 +6,10 @@
     </extensions>
 
     <actions>
-        <group id="Tabby.GitMenu" popup="false">
+        <group id="MSBCodegen.GitMenu" popup="false">
             <add-to-group group-id="Git.MainMenu" anchor="after" relative-to-action="Git.Clone" />
             <separator/>
-            <reference id="Tabby.GenerateCommitMessage" />
+            <reference id="MSBCodegen.GenerateCommitMessage" />
             <separator/>
         </group>
     </actions>

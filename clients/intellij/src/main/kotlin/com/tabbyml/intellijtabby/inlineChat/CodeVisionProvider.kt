@@ -29,7 +29,7 @@ abstract class InlineChatCodeVisionProvider : CodeVisionProvider<Any>, DumbAware
     // provider id
     abstract override val id: String
 
-    override val groupId = "Tabby.InlineEdit"
+    override val groupId = "MSBCodegen.InlineEdit"
 
     // command name
     abstract val command: String
@@ -102,44 +102,44 @@ abstract class InlineChatCodeVisionProvider : CodeVisionProvider<Any>, DumbAware
 }
 
 class InlineChatLoadingCodeVisionProvider : InlineChatCodeVisionProvider() {
-    override val id: String = "Tabby.InlineChat.Loading"
+    override val id: String = "MSBCodegen.InlineChat.Loading"
     override val name ="MSB CodeGen Inline Edit Loading"
     override val command: String = " "
     override val action: String? = null
     override val actionId: String? = null
     override val icon: Icon = AnimatedIcon.Default()
     override val relativeOrderings: List<CodeVisionRelativeOrdering> =
-        listOf(CodeVisionRelativeOrdering.CodeVisionRelativeOrderingBefore("Tabby.InlineChat.Cancel"))
+        listOf(CodeVisionRelativeOrdering.CodeVisionRelativeOrderingBefore("MSBCodegen.InlineChat.Cancel"))
 }
 
 class InlineChatCancelCodeVisionProvider : InlineChatCodeVisionProvider() {
-    override val id: String = "Tabby.InlineChat.Cancel"
+    override val id: String = "MSBCodegen.InlineChat.Cancel"
     override val name ="MSB CodeGen Inline Edit Cancel"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String = "cancel"
-    override val actionId: String = "Tabby.InlineChat.Resolve.Cancel"
+    override val actionId: String = "MSBCodegen.InlineChat.Resolve.Cancel"
     override val icon: Icon = AllIcons.Actions.Cancel
     override val relativeOrderings: List<CodeVisionRelativeOrdering> =
         emptyList()
 }
 
 class InlineChatAcceptCodeVisionProvider : InlineChatCodeVisionProvider() {
-    override val id: String = "Tabby.InlineChat.Accept"
+    override val id: String = "MSBCodegen.InlineChat.Accept"
     override val name ="MSB CodeGen Inline Edit Accept"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String? = "accept"
-    override val actionId: String = "Tabby.InlineChat.Resolve.Accept"
+    override val actionId: String = "MSBCodegen.InlineChat.Resolve.Accept"
     override val icon: Icon = AllIcons.Actions.Checked
     override val relativeOrderings: List<CodeVisionRelativeOrdering> =
-        listOf(CodeVisionRelativeOrdering.CodeVisionRelativeOrderingBefore("Tabby.InlineChat.Discard"))
+        listOf(CodeVisionRelativeOrdering.CodeVisionRelativeOrderingBefore("MSBCodegen.InlineChat.Discard"))
 }
 
 class InlineChatDiscardCodeVisionProvider : InlineChatCodeVisionProvider() {
-    override val id: String = "Tabby.InlineChat.Discard"
+    override val id: String = "MSBCodegen.InlineChat.Discard"
     override val name ="MSB CodeGen Inline Edit Discard"
     override val command: String = "tabby/chat/edit/resolve"
     override val action: String = "discard"
-    override val actionId: String = "Tabby.InlineChat.Resolve.Discard"
+    override val actionId: String = "MSBCodegen.InlineChat.Resolve.Discard"
     override val icon: Icon = AllIcons.Actions.Close
     override val relativeOrderings: List<CodeVisionRelativeOrdering> =
         emptyList()
@@ -147,7 +147,7 @@ class InlineChatDiscardCodeVisionProvider : InlineChatCodeVisionProvider() {
 
 class InlineChatCodeVisionSettingProvider: CodeVisionGroupSettingProvider {
     override val groupId: String
-        get() = "Tabby.InlineEdit"
+        get() = "MSBCodegen.InlineEdit"
     override val groupName: String
         get() = "MSB CodeGen Inline Edit"
     override val description: String

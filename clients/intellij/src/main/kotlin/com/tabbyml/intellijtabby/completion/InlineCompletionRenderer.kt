@@ -168,7 +168,7 @@ class InlineCompletionRenderer {
   private fun createInlayText(editor: Editor, text: String, offset: Int, lineOffset: Int): Inlay<*>? {
     val renderer = object : EditorCustomElementRenderer {
       override fun getContextMenuGroupId(inlay: Inlay<*>): String {
-        return "Tabby.InlineCompletionContextMenu"
+        return "MSBCodegen.InlineCompletionContextMenu"
       }
 
       override fun calcWidthInPixels(inlay: Inlay<*>): Int {

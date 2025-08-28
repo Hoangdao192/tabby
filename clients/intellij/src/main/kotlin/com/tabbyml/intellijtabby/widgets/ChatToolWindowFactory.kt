@@ -25,7 +25,7 @@ class ChatToolWindowFactory : ToolWindowFactory, DumbAware {
 
       val content = ContentFactory.getInstance().createContent(browser.component, "", false)
       toolWindow.contentManager.addContent(content)
-      toolWindow.setTitleActions(listOf(ActionManager.getInstance().getAction("Tabby.ChatToolWindowToolbar")))
+      toolWindow.setTitleActions(listOf(ActionManager.getInstance().getAction("MSBCodegen.ChatToolWindowToolbar")))
     } catch (e: Exception) {
       logger.warn("Failed to create chat tool window", e)
 

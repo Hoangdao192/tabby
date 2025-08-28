@@ -27,7 +27,7 @@ impl Drop for OpenTimer<'_> {
     fn drop(&mut self) {
         self.timer_tree.timings.push(Timing {
             name: self.name,
-            duration: self.start.elapsed().whole_microseconds() as i64,
+            duration: self.start.elapsed().as_micros() as i64,
             depth: self.depth,
         });
     }
