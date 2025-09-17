@@ -1,0 +1,9 @@
+services:
+  tabby:
+    image: trungnglight/tabby:cpu
+    container_name: tabby
+    command: serve
+    volumes:
+      - "C:/Users/TrungNg/.tabby:/data"
+    ports:
+      - 8080:8080

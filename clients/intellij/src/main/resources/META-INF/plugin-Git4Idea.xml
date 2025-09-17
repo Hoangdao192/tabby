@@ -1,0 +1,16 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="com.tabbyml.intellijtabby.git.GitProvider"
+                        serviceImplementation="com.tabbyml.intellijtabby.git.Git4IdeaProvider"
+                        overrides="true"/>
+    </extensions>
+
+    <actions>
+        <group id="MSBCodegen.GitMenu" popup="false">
+            <add-to-group group-id="Git.MainMenu" anchor="after" relative-to-action="Git.Clone" />
+            <separator/>
+            <reference id="MSBCodegen.GenerateCommitMessage" />
+            <separator/>
+        </group>
+    </actions>
+</idea-plugin>
