@@ -61,7 +61,7 @@ class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
       override fun createPopup(context: DataContext): ListPopup {
         return JBPopupFactory.getInstance().createActionGroupPopup(
           tooltip,
-          ActionManager.getInstance().getAction("MSBCodegen.StatusBarPopupMenu") as ActionGroup,
+          ActionManager.getInstance().getAction("Tabby.StatusBarPopupMenu") as ActionGroup,
           context,
           false,
           null,

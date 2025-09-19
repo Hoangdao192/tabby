@@ -345,7 +345,7 @@ class InlineInputComponent(
 
     private fun handleConfirm() {
         val codeVisionSettings = CodeVisionSettings.instance()
-        if (!codeVisionSettings.isProviderEnabled("MSBCodegen.InlineEdit")) {
+        if (!codeVisionSettings.isProviderEnabled("Tabby.InlineEdit")) {
             val result = Messages.showOkCancelDialog(
                 project,
                 "MSB CodeGen Inline Edit Code Vision feature is not enabled. Please enable it in Settings > Editor > Inlay Hint > Code Vision > MSB CodeGen Inline Edit.",

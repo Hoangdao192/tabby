@@ -1,9 +1,18 @@
 services:
-  tabby:
+  tabby1:
     image: trungnglight/tabby:cpu
-    container_name: tabby
+    container_name: tabby1
     command: serve
     volumes:
       - "C:/Users/TrungNg/.tabby:/data"
     ports:
       - 8080:8080
+
+  tabby2:
+    image: trungnglight/tabby:cpu
+    container_name: tabby2
+    command: serve
+    volumes:
+      - "C:/Users/TrungNg/.tabby:/data"
+    ports:
+      - 8081:8080
