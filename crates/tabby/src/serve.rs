@@ -1,6 +1,10 @@
 use std::{net::IpAddr, sync::Arc, time::Duration};
 
 use axum::{routing, Extension, Router};
+use axum::body::{Body, HttpBody};
+use axum::http::Request;
+use axum::middleware::Next;
+use axum::response::Response;
 use clap::Args;
 use hyper::StatusCode;
 use spinners::{Spinner, Spinners, Stream};
@@ -15,6 +19,7 @@ use tabby_download::ModelKind;
 use tabby_webserver::EEApiDoc;
 use tokio::{sync::oneshot::Sender, time::sleep};
 use tower_http::timeout::TimeoutLayer;
+use tower_http::trace::TraceLayer;
 use tracing::{debug, warn};
 use utoipa::{
     openapi::security::{HttpAuthScheme, HttpBuilder, SecurityScheme},
@@ -275,9 +280,17 @@ async fn api_router(
                 "/v1/completions",
                 routing::post(routes::completions).with_state(Arc::new(completion_state)),
             )
+
             .layer(TimeoutLayer::new(Duration::from_secs(
                 config.server.completion_timeout,
-            )));
+            )))
+            .layer(TraceLayer::new(
+                tower_http::classify::StatusInRangeAsFailures::new(400..=599)
+                    .into_make_classifier(),
+            )
+                       .on_request(|request: &hyper::Request<axum::body::Body>, _: &'_ _| {
+                           tracing::info!("Body: {:?}", request.body());
+                       }),);
 
         if webserver.is_none() || webserver.is_some_and(|x| !x) {
             router = router.layer(Extension(AllowedCodeRepository::new_from_config()));

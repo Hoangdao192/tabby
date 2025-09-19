@@ -160,6 +160,9 @@ pub enum CoreError {
 
     #[error("{0}")]
     Other(#[from] anyhow::Error),
+
+    #[error("{0}")]
+    NotImplemented(&'static str)
 }
 
 impl From<LdapError> for CoreError {

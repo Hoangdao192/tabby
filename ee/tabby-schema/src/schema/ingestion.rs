@@ -1,8 +1,9 @@
 use async_trait::async_trait;
+use axum::extract::Multipart;
 use juniper::GraphQLObject;
 use tabby_common::api::ingestion::{IngestionRequest, IngestionResponse};
-
-use crate::Result;
+use crate::ingestion::IngestedDocStatus::Failed;
+use crate::{CoreError, Result};
 
 pub struct IngestedDocument {
     pub id: String,
@@ -29,6 +30,15 @@ pub struct IngestionStats {
 
 #[async_trait]
 pub trait IngestionService: Send + Sync {
+
+    async fn ingestion_multipart(
+        &self,
+        multipart: Multipart,
+        ingestion: IngestionRequest
+    ) -> Result<IngestionResponse> {
+        return Err(CoreError::NotImplemented("This is default method and does not been implemented yet"));
+    }
+    
     async fn get(&self, source_id: &str, id: &str) -> Result<IngestedDocument>;
     async fn list(
         &self,

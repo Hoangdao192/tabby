@@ -4,7 +4,7 @@ use axum::{extract::State, Extension, Json};
 use axum_extra::{headers, TypedHeader};
 use hyper::StatusCode;
 use tabby_common::axum::{AllowedCodeRepository, MaybeUser};
-use tracing::{instrument, warn};
+use tracing::{debug, info, instrument, warn};
 
 use crate::services::completion::{CompletionRequest, CompletionResponse, CompletionService};
 
@@ -30,6 +30,9 @@ pub async fn completions(
     user_agent: Option<TypedHeader<headers::UserAgent>>,
     Json(mut request): Json<CompletionRequest>,
 ) -> Result<Json<CompletionResponse>, StatusCode> {
+
+    println!("{}", serde_json::to_string(&request).unwrap());
+
     if let Some(user) = user {
         request.user.replace(user);
     }

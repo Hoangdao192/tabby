@@ -1,0 +1,35 @@
+@startuml
+actor User
+participant ChatUI
+participant WebServer
+participant GraphQL
+participant Subscription
+participant ThreadServiceImpl
+participant AnswerService
+
+User -> ChatUI: Sends message
+ChatUI -> WebServer : socket /subscriptions
+note over ChatUI, WebServer
+    Initialize socket with token
+    "type":"connection_init",
+    "payload":{"authorization":"Bearer ..."}
+end note
+WebServer -> ChatUI : connection_ack
+ChatUI -> WebServer : socket /subscriptions
+note over ChatUI, WebServer
+    Send user message
+    "type":"subscribe",
+    "query":"subscription CreateThreadAndRun"
+end note
+WebServer -> GraphQL: invoke CreateThreadAndRun
+GraphQL -> Subscription : invoke create_thread_and_run
+note over GraphQL, Subscription
+Input body:
+- content: user message
+- attachments: list of attachment files
+(filePath, startLine, content)
+end note
+Subscription -> ThreadServiceImpl : create_run()
+ThreadServiceImpl -> AnswerService : answer()
+hide footbox
+@enduml

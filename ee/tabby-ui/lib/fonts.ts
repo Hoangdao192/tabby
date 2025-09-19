@@ -9,6 +9,7 @@ export const fontSans = FontSans({
   variable: '--font-sans'
 })
 
+// sjs Hello hjhhjjsjs
 export const fontMono = FontMono({
   subsets: ['latin'],
   variable: '--font-mono'
