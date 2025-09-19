@@ -1,4 +1,5 @@
 pub mod prompt;
+mod multipart;
 
 use std::sync::Arc;
 

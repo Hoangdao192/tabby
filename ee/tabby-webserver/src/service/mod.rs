@@ -22,6 +22,7 @@ mod user_event;
 mod user_group;
 pub mod utils;
 pub mod web_documents;
+pub mod extractor;
 
 use std::sync::Arc;
 

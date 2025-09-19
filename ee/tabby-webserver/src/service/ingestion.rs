@@ -1,5 +1,6 @@
 use anyhow::Context;
 use async_trait::async_trait;
+use axum::extract::Multipart;
 use humantime::parse_duration;
 use tabby_common::api::ingestion::{IngestionRequest, IngestionResponse};
 use tabby_db::DbConn;
@@ -75,6 +76,45 @@ impl IngestionService for IngestionServiceImpl {
             .db
             .list_ingested_document_sources(limit, offset)
             .await?)
+    }
+
+    async fn ingestion_multipart(
+        &self,
+        multipart: Multipart,
+        ingestion: IngestionRequest
+    ) -> Result<IngestionResponse> {
+        let now = chrono::Utc::now();
+        let expired_at = if let Some(ttl) = &ingestion.ttl {
+            let ttl = parse_duration(ttl)
+                .context("Failed to parse TTL")
+                .map_err(CoreError::Other)?;
+            now.timestamp() + ttl.as_secs() as i64
+        } else {
+            now.timestamp() + TTL_DEFAULT_90_DAYS
+        };
+
+        // url encode the source and id
+        let source = self.source_id_from_name(&ingestion.source);
+        let id = urlencoding::encode(&ingestion.id);
+
+        self.db
+            .upsert_ingested_document(
+                &source,
+                &id,
+                expired_at,
+                ingestion.link,
+                &ingestion.title,
+                &ingestion.body,
+            )
+            .await
+            .context("Failed to create ingestion")?;
+
+        Ok(IngestionResponse {
+            id: ingestion.id,
+            source: ingestion.source,
+            message: "Ingestion has been accepted and will be processed later.".to_string(),
+        })
+
     }
 
     async fn ingestion(&self, ingestion: IngestionRequest) -> Result<IngestionResponse> {
